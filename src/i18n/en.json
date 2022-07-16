@@ -1,0 +1,40 @@
+{
+  "success": {
+    "success": "Success",
+    "verified": "Verified"
+  },
+  "errors": {
+    "empty_credential": "Please enter credentials",
+    "emailValidate": "Please enter valid email",
+    "passwordValidate": "Please enter valid password",
+    "confirmPasswordValidate":"Password must be same",
+    "minimumPasswordValue": "Password must be contain atleast 8 character",
+    "phoneNumValidate": "Please enter valid mobile number",
+    "empty_mobileNum": "Please enter mobile number",
+    "minimum_phoneNum": "Please enter 10 digits mobile number",
+    "validPhoneNum": "Please enter valid phone number",
+    "otpValidate": "Please enter otp",
+    "minimumOtpValue": "Please enter valid otp",
+    "nameValidate": "please enter valid name",
+    "lastName": "Please enter last name",
+    "email":"Please enter email",
+    "password":"Please enter password",
+    "confirmPassword":"Please enter confirm password",
+    "company":"Please enter company name",
+    "validCompanyName":"Please enter valid company name",
+    "url":"Please enter url",
+    "validUrl":"Please enter valid url",
+    "uid":"Please enter uid",
+    "validUid":"Please enter valid User ID",
+    "street":"Please enter street",
+    "validStreet":"Please enter valid Street",
+    "number":"Please enter number",
+    "validNumber":"Please enter valid Number",
+    "postCode":"Please enter postCode",
+    "validPostCode":"Please enter valid postcode",
+    "city":"Please enter city",
+    "validCity":"Please enter valid city name",
+    "country":"Please enter country",
+    "validCountry":"Please enter valid country name"
+  }
+}

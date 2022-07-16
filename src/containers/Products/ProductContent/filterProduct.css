@@ -1,0 +1,38 @@
+.slick-prev:before,
+.slick-next:before{
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: #000;
+    font-family: "Font Awesome 5 Free" !important; 
+    font-weight: 900; 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-slide {
+    padding: 0.5rem 0.4rem;
+    border: 1px solid rgb(172, 172, 172);
+    border-radius: 6px;
+    margin-right: 1.275rem;
+    width: auto !important;
+}
+.slick-slide div{ display: flex; align-items: center; }
+
+.slick-prev:before{
+    content: "";
+    display: none;
+}
+.slick-next:before{
+    content: "\f054" !important;
+}
+.slick-next{ right: -6px; }
+.slick-next, .slick-prev { top: 45%;}
+
+button.slick-arrow.slick-next {
+    background-color: #fff;
+    width: 4%;
+    height: 110%;
+}
+.productvarietyPage ul li { cursor: pointer; }
+.active::after:first-child {padding-right: 0;}
+.active::after:last-child {padding-left: 0;}

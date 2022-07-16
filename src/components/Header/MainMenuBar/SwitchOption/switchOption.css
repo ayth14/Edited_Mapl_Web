@@ -1,0 +1,63 @@
+.react-switch-checkbox {
+    height: 0;
+    width: 0;
+    position: absolute;
+    visibility: hidden;
+  }
+  
+  .react-switch {
+    cursor: pointer;
+    width: 100%;
+    height: 2.5rem;
+    border: 1px solid rgb(229 229 229);
+    border-radius: 30px;
+    background: #f7f7f7;
+    position: relative;
+    transition: background-color 0.2s;
+  }
+  
+  .react-switch .react-switch-labels .switch-button-active {
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    width: 50%;
+    height: 100%;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    background: #fff;
+    color: #eb3338;
+    box-shadow: 0 3px 6px 0 var(--boxShadow);
+  }
+  
+  .react-switch-checkbox:checked + .react-switch-button {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);    
+  }
+  
+
+  .react-switch-labels {
+    position: relative;
+    z-index: 99;
+    height: 100%;
+    font: 14px "Segoe UI", Verdana, sans-serif;
+  }
+  
+  .react-switch-labels span.base {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+  }
+  .react-switch-labels span:first-child {
+    left: 0;
+  }
+  .react-switch-labels span:last-child {
+    right: 0;
+  }
+  .maplNowIcon {font-size: 22px;}
+  .maplNowIcon, .truckIcon{ padding-right: 6px;}
