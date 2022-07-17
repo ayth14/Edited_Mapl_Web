@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const LocationPopup = (props) => {
   const { isOpenModal, closeModal } = props;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const hidden = !isOpenModal ? "hidden" : "flex";
 
   const modalStyle = useSpring({
@@ -19,8 +19,8 @@ const LocationPopup = (props) => {
   });
 
   const registerAddress = () => {
-    navigate("/googleMap")
-  }
+    navigate("/googleMap");
+  };
 
   const CrossButton = () => {
     return (
@@ -67,7 +67,21 @@ const LocationPopup = (props) => {
             <ItemContainer>
               <Heading>{"Tip"}</Heading>
               <TextContent>
-                <RegisterButton onClick={registerAddress}>Register right at the beginning</RegisterButton> , then your delivery address is automatically stored. If you want to have it delivered to a different address, first enter your  new address  so that the correct and available products for your neighborhood are available in the shop.
+                <Link to={"/googleMap"} className={"text-logoColor"}>
+                  Register right at the beginning
+                </Link>
+                {", then your delivery address is automatically stored. "}
+              </TextContent>
+              <TextContent>
+                If you want to have it delivered to a{" "}
+                <span className="font-semibold">
+                  different address, first enter your
+                </span>{" "}
+                <Link to={"/googleMap"} className={"text-logoColor"}>
+                  new address
+                </Link>{" "}
+                so that the correct and available products for your neighborhood
+                are available in the shop.
               </TextContent>
             </ItemContainer>
           </div>
@@ -118,5 +132,5 @@ text-[16px]
 
 const RegisterButton = tw.button`
 text-logoColor
-`
+`;
 export default LocationPopup;

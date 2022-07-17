@@ -13,7 +13,7 @@ const Profile = (props) => {
   };
 
   const handleProfile = () => {
-    navigate("/profile");
+    navigate("/profile/account-settings");
   };
   
   return (
