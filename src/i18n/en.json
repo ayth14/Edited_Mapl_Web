@@ -6,6 +6,8 @@
   "errors": {
     "empty_credential": "Please enter credentials",
     "emailValidate": "Please enter valid email",
+    "verifyEmail":"Please verify email",
+    "verifyMobileNum":"Please verify mobile number",
     "passwordValidate": "Please enter valid password",
     "confirmPasswordValidate":"Password must be same",
     "minimumPasswordValue": "Password must be contain atleast 8 character",

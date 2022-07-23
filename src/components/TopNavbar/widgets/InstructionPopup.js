@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import tw from "tailwind-styled-components";
+import { useNavigate } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 import { Button } from "@components";
 import { XIcon } from "@heroicons/react/solid";
 import theme from "@theme";
 import LocationPopup from "./LocationPopup";
-import { useNavigate } from "react-router-dom";
 
 const InstructionPopup = (props) => {
+  
   const { isOpenModal, closeModal } = props;
-  const navigate = useNavigate();
+  
   const [openLocation, setOpenLocation] = useState(false)
+  
+  const navigate = useNavigate();
 
   const hidden = !isOpenModal ? "hidden" : "flex";
 
@@ -23,10 +26,18 @@ const InstructionPopup = (props) => {
     setOpenLocation(true)
   }
 
+  const openUnavailableLocationModal = () => {
+    navigate("/googleMap");
+  };
+
   const openMap = () => {
     navigate("/googleMap")
   }
 
+  const handleClick = () => {
+    navigate("/googleMap")
+  }
+  
   const modalBackground = useSpring({
     backgroundColor: isOpenModal ? "rgba(0,0,0,0.5)" : "transparent",
   });
@@ -52,7 +63,7 @@ const InstructionPopup = (props) => {
           <Heading>
             {"Before you can order, you have to tell us where to deliver"}
           </Heading>
-          <div className="p-2 mt-4 flex">
+          <div className="p-2 mt-4 flex lg:flex-row flex-col">
             <ItemContainer className="px-3">
               <TextLinkButton onClick={toggleInstructionModal}>{"Why do we need your location?"}</TextLinkButton>
               <Button
@@ -62,14 +73,14 @@ const InstructionPopup = (props) => {
                 onClick={openMap}
               />
             </ItemContainer>
-            <div className="border-l-2 h-[18vh] lg:h-[16vh] px-1" />
+            <div className="border-b-2 h-0  lg:h-[16vh] px-1  pb-3 lg:border-l-2 lg:border-b-0"/>
             <ItemContainer>
               <TextContent>
                 {"If you already know, you are out of the delivery zone"}
               </TextContent>
-              <TextButton>{"Please click here"}</TextButton>
+              <TextButton onClick={handleClick}>{"Please click here"}</TextButton>
             </ItemContainer>
-            <div className="border-l-2 h-[18vh] lg:h-[16vh] px-1" />
+            <div className="border-b-2 h-0  lg:h-[16vh] px-1  pb-3 lg:border-l-2 lg:border-b-0"/>
             <ItemContainer>
               <TextContent>
                 {
@@ -80,6 +91,7 @@ const InstructionPopup = (props) => {
                 title={"Register location"}
                 className="bg-black rounded-sm mt-5 lg:w-[50%]"
                 titleStyle={{ color: theme.colors.white }}
+                onClick={openUnavailableLocationModal}
               />
             </ItemContainer>
           </div>
@@ -92,16 +104,21 @@ const InstructionPopup = (props) => {
 
 const Container = tw.div`
 bg-white
-lg:w-[800px]
-sm:w-full
+xl:w-[800px]
+lg:w-[740px]
+md:w-[500px]
+sm:w-[400px]
+w-[300px]
 h-full
 p-2
+mx-6
 rounded-sm
 `;
 
 const ItemContainer = tw.div`
 flex 
 flex-col
+py-3
 `;
 
 const TextButton = tw.button`
@@ -118,6 +135,7 @@ flex
 text-center
 font-semibold
 hover:underline
+sm:justify-center
 m-2
 `;
 
@@ -136,6 +154,7 @@ flex
 text-center
 font-semibold
 hover:underline
+sm:justify-center
 m-2
 `;
 

@@ -4,80 +4,88 @@ import { useNavigate } from "react-router-dom";
 import { HiOutlineSearch } from "react-icons/hi";
 import maplLogo from "@assets/images/maplLogo.png";
 import location from "@assets/images/location.png";
-import { UserData, SearchPopup } from "./widgets";
+import { UserData, SearchPopup, InstructionPopup } from "./widgets";
 import { Basic } from "../Text";
-import { InstructionPopup } from "../../containers/Home/widgets";
 
 const SecondaryNavbar = () => {
   const [openFilter, setOpenFilter] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [openIcon, setOpenIcon] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  
+  const navigate = useNavigate();
+  
   const handleIcon = () => {
     setOpenIcon(!openIcon);
   };
-  const navigate = useNavigate();
   const handlePage = () => {
     navigate("/home");
   };
+  
   const handleOpen = (e) => {
     e.target.value.length !== 0 ? setOpenFilter(false) : setOpenFilter(true);
     setOpenSearch(true);
   };
+  
   const handleChange = (e) => {
     e.target.value.length !== 0 ? setOpenFilter(false) : setOpenFilter(true);
   };
+  
   const handleClose = () => {
     setOpenSearch(false);
   };
+  
   const toggleModal = () => {
     setIsOpenModal(!isOpenModal);
   };
   return (
     <>
-    <HeaderContainer>
-      <HeaderContent>
-        <LogoContent>
-          <LogoImg src={maplLogo} alt="" onClick={handlePage} />
-          <LocationBtn onClick={toggleModal}>
-            <img
-              src={location}
-              alt=""
-              className="xl:w-4 xl:h-4 w-[22px] h-[22px]"
-            />
-            <Basic className="lg:text-[12px] xl:flex lg:flex hidden font-semibold">
-              {"Choose Location"}
-            </Basic>
-          </LocationBtn>
-        </LogoContent>
-        <SearchContent onBlur={handleClose}>
-          <SearchInput $icon={openIcon}>
-            <Icon>
-              <HiOutlineSearch
-                onClick={handleIcon}
-                className={"xl:text-lg lg:text-base"}
+      <HeaderContainer>
+        <HeaderContent>
+          <LogoContent>
+            <LogoImg src={maplLogo} alt="" onClick={handlePage} />
+            <LocationBtn onClick={toggleModal}>
+              <img
+                src={location}
+                alt=""
+                className="xl:w-4 xl:h-4 w-[22px] h-[22px]"
               />
-            </Icon>
-            <InputBox>
-              <CustomInput
-                placeholder={"Product Search"}
-                onChange={handleChange}
-                onFocus={handleOpen}
-                id={"searchBox"}
-              />
-            </InputBox>
-          </SearchInput>
-          <SearchModal $openSearch={openSearch}>
-            <SearchPopup openFilter={openFilter} openSearch={openSearch} />
-          </SearchModal>
+              <Basic className="lg:text-[12px] xl:flex lg:flex hidden font-semibold">
+                {"Choose Location"}
+              </Basic>
+            </LocationBtn>
+          </LogoContent>
+          <SearchContent onBlur={handleClose}>
+            <SearchInput $icon={openIcon}>
+              <Icon>
+                <HiOutlineSearch
+                  onClick={handleIcon}
+                  className={"xl:text-lg lg:text-base"}
+                />
+              </Icon>
+              <InputBox>
+                <CustomInput
+                  placeholder={"Product Search"}
+                  onChange={handleChange}
+                  onFocus={handleOpen}
+                  id={"searchBox"}
+                />
+              </InputBox>
+            </SearchInput>
+            <SearchModal $openSearch={openSearch}>
+              <SearchPopup openFilter={openFilter} openSearch={openSearch} />
+            </SearchModal>
 
-          <UserContent>
-            <UserData />
-          </UserContent>
-        </SearchContent>
-      </HeaderContent>
-    </HeaderContainer>
-    <InstructionPopup isOpenModal={isOpenModal} closeModal={() => isOpenModal && setIsOpenModal(false)}/>
+            <UserContent>
+              <UserData />
+            </UserContent>
+          </SearchContent>
+        </HeaderContent>
+      </HeaderContainer>
+      <InstructionPopup
+        isOpenModal={isOpenModal}
+        closeModal={() => isOpenModal && setIsOpenModal(false)}
+      />
     </>
   );
 };

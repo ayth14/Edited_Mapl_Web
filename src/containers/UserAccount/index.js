@@ -1,11 +1,13 @@
-import React from "react";
-import uroutes from "./uroutes";
+import React, { useState } from "react";
+import user_routes from "./user_routes";
 import { Route, Routes } from "react-router";
 import tw from "tailwind-styled-components";
 import { SideBar, TopNavbar, Footer } from "@components";
 import { Profile } from "@components/TopNavbar/widgets";
+import UserData from "@components/TopNavbar/widgets/UserData";
 
 const UserAccount = () => {
+  const [openProfile, setOpenProfile] = useState(false);
   return (
     <>
       <TopNavbar />
@@ -13,9 +15,10 @@ const UserAccount = () => {
         <SideMenuContent>
           <SideBar />
         </SideMenuContent>
+        <UserData userclassname={"xl:hidden"} />
         <UserContent>
           <Routes>
-            {uroutes.map((route, idx) => (
+            {user_routes.map((route, idx) => (
               <Route
                 path={route.path}
                 element={route.element}
@@ -27,7 +30,7 @@ const UserAccount = () => {
           <Profile
             openProfile={true}
             userName={"Swissan Kandaswamy"}
-            profileclassname={"absolute top-0"}
+            profileclassname={"xl:absolute xl:top-0 xl:flex hidden"}
           />
         </UserContent>
       </Container>
@@ -61,7 +64,7 @@ w-full
 h-full 
 flex
 flex-col
-static
+relative
 px-4
 xl:py-3
 lg:py-7

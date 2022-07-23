@@ -18,10 +18,11 @@ import { toast } from "react-toastify";
 import { en } from "@i18n";
 import {
   isValidName,
-  isValidPhoneNumber,
+  isValidNumber,
   isValidPassword,
   isValidEmail,
   isValidUrl,
+  isValidUserId,
 } from "@utils";
 
 const BussinessRegistration = () => {
@@ -79,11 +80,19 @@ const BussinessRegistration = () => {
   };
 
   const toggleEmailVerificationModal = () => {
-    setState((prev) => ({ ...prev, isEmailVerificationModal: true }));
+    if (email && !isValidEmail(email.trim())) {
+      toast.error(en.errors.emailValidate);
+    } else {
+      setState((prev) => ({ ...prev, isEmailVerificationModal: true }));
+    }
   };
 
   const toggleMobileVerificationModal = () => {
-    setState((prev) => ({ ...prev, isMobileVerificationModal: true }));
+    if (phone_num && !isValidNumber(phone_num.trim())) {
+      toast.error(en.errors.phoneNumValidate);
+    } else {
+      setState((prev) => ({ ...prev, isMobileVerificationModal: true }));
+    }
   };
 
   const onChangeEmail = (event) => {
@@ -110,10 +119,11 @@ const BussinessRegistration = () => {
 
   const goBackByEmailOtpModal = () => {
     if (isEmailModalValue.trim().length == 0) {
-      alert("Please enter otp");
+      alert(en.errors.otpValidate);
     } else if (isEmailModalValue.trim().length < 4) {
-      alert("Please enter valid otp");
+      alert(en.errors.minimumOtpValue);
     } else {
+      toast.success(en.success.verified);
       setState((prev) => ({
         ...prev,
         isEmailVerificationModal: false,
@@ -125,10 +135,11 @@ const BussinessRegistration = () => {
 
   const goBackByMobileOtpModal = () => {
     if (isMobileModalValue.trim().length == 0) {
-      alert("Please enter otp");
+      alert(en.errors.otpValidate);
     } else if (isMobileModalValue.trim().length < 4) {
-      alert("Please enter valid otp");
+      alert(en.errors.minimumOtpValue);
     } else {
+      toast.success(en.success.verified);
       setState((prev) => ({
         ...prev,
         isMobileVerificationModal: false,
@@ -146,7 +157,6 @@ const BussinessRegistration = () => {
     (password.trim().length == 0 && en.errors.password) ||
     (confirmPassword.trim().length == 0 && en.errors.confirmPassword) ||
     (company.trim().length == 0 && en.errors.company) ||
-    (url.trim().length == 0 && en.errors.url) ||
     (uid.trim().length == 0 && en.errors.uid) ||
     (street.trim().length == 0 && en.errors.street) ||
     (number.trim().length == 0 && en.errors.number) ||
@@ -157,15 +167,15 @@ const BussinessRegistration = () => {
   const completeRegistration = () => {
     if (checkvalue) {
       toast.error(checkvalue);
+    } else if (!verifyEmail) {
+      toast.error(en.errors.verifyEmail);
+    } else if (!verifyMobileNum) {
+      toast.error(en.errors.verifyMobileNum);
     } else if (
       (fname && !isValidName(fname.trim())) ||
       (lname && !isValidName(lname.trim()))
     ) {
       toast.error(en.errors.nameValidate);
-    } else if (email && !isValidEmail(email.trim())) {
-      toast.error(en.errors.emailValidate);
-    } else if (phone_num && !isValidPhoneNumber(phone_num.trim())) {
-      toast.error(en.errors.phoneNumValidate);
     } else if (password && !isValidPassword(password.trim())) {
       toast.error(en.errors.passwordValidate);
     } else if (password !== confirmPassword) {
@@ -174,13 +184,13 @@ const BussinessRegistration = () => {
       toast.error(en.errors.validCompanyName);
     } else if (url && !isValidUrl(url.trim())) {
       toast.error(en.errors.validUrl);
-    } else if (uid && !isValidName(uid.trim())) {
+    } else if (uid && !isValidUserId(uid.trim())) {
       toast.error(en.errors.validUid);
     } else if (street && !isValidName(street.trim())) {
       toast.error(en.errors.validStreet);
-    } else if (number && !isValidName(number.trim())) {
+    } else if (number && !isValidNumber(number.trim())) {
       toast.error(en.errors.validNumber);
-    } else if (postCode && !isValidName(postCode.trim())) {
+    } else if (postCode && !isValidNumber(postCode.trim())) {
       toast.error(en.errors.validPostCode);
     } else if (city && !isValidName(city.trim())) {
       toast.error(en.errors.validCity);

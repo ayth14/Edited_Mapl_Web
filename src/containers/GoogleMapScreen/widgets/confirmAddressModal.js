@@ -4,18 +4,22 @@ import { animated, useSpring } from "@react-spring/web";
 import { XIcon } from "@heroicons/react/solid";
 import { PrimaryText, Button, GoogleMap, Input } from "@components";
 import theme from "@theme";
-import indoor from '@assets/images/home.png';
-import outdoor from '@assets/images/outdoor.png';
-import {HiOutlinePencil} from 'react-icons/hi';
-import { useNavigate } from "react-router-dom";
+import indoorWhite from "@assets/images/home.png";
+import indoorBlack from "@assets/images/homeBlack.png";
+import outdoor from "@assets/images/outdoor.png";
+import outdoorWhite from "@assets/images/outdoorWhite.png";
+import { HiOutlinePencil } from "react-icons/hi";
+import LocationUnavailableModal from "./locationUnavailableModal";
 
 const ConfirmAddressModal = ({ isOpenModal, closeModal }) => {
   const [state, setState] = useState({
     isToggleDoor: true,
+    isLocationUnavailableModal: false,
   });
-  const { isToggleDoor } = state;
+  const { isToggleDoor, isLocationUnavailableModal } = state;
 
   const hidden = !isOpenModal ? "hidden" : "flex";
+
   const modalStyle = useSpring({
     scale: isOpenModal ? 1 : 0,
     opacity: isOpenModal ? 1 : 0,
@@ -29,15 +33,13 @@ const ConfirmAddressModal = ({ isOpenModal, closeModal }) => {
     setState((prev) => ({ ...prev, isToggleDoor: true }));
   };
 
-  const toggleOutdoor = () =>{
-    setState(prev => ({...prev, isToggleDoor: false}))
-  }
+  const toggleOutdoor = () => {
+    setState((prev) => ({ ...prev, isToggleDoor: false }));
+  };
 
-  const navigate = useNavigate();
-
-  const gotoNextModal = () =>{
-    alert('this is aleetr')
-  }
+  const gotoNextModal = () => {
+    setState((prev) => ({ ...prev, isLocationUnavailableModal: true }));
+  };
 
   const CrossButton = () => {
     return (
@@ -62,38 +64,34 @@ const ConfirmAddressModal = ({ isOpenModal, closeModal }) => {
             <div className="pt-4">
               <PrimaryText>{"Please check your address details"}</PrimaryText>
             </div>
-            <div className="flex my-4">
-                <Button
-                  title={"Is indoor"}
-                  className={isToggleDoor ? "bg-black" : "bg-white"}
-                  icon={indoor}
-                  titleclassname={"flex self-center px-2"}
-                  iconclassname={"flex self-center w-[10px]"}
-                  titleStyle={{
-                    color: !isToggleDoor
-                    ? theme.colors.black
-                    : theme.colors.white,
-                    fontWeight: "bold",
-                    fontSize: "14px",
-                  }}
-                  onClick={toggleIndoor}
-                />
-                <Button
-                  title={"Is outdoor"}
-                  className={!isToggleDoor ? "bg-black" : "bg-white"}
-                  icon={outdoor}
-                  titleclassname={"flex self-center px-2"}
-                  iconclassname={"flex self-center w-[10px]"}
-                  titleStyle={{
-                    color: isToggleDoor
-                    ? theme.colors.black
-                    : theme.colors.white,
-                    fontWeight: "bold",
-                    fontSize: "14px",
-                  }}
-                  onClick={toggleOutdoor}
+            <div className="flex my-4 border">
+              <div
+                className={`${
+                  isToggleDoor ? "bg-black" : "bg-white"
+                } inline-block w-full text-center`}
+              >
+                <ToggleButton onClick={toggleIndoor} style={{color: !isToggleDoor ? theme.colors.black : theme.colors.white}}>
+                  {"Is indoor"}
+                </ToggleButton>
+                <img
+                  src={isToggleDoor ? indoorWhite : indoorBlack}
+                  className={"inline-block w-6 h-5 self-center mx-2"}
                 />
               </div>
+              <div
+                className={`${
+                  !isToggleDoor ? "bg-black" : "bg-white"
+                } inline-block w-full text-center`}
+              >
+                <ToggleButton onClick={toggleOutdoor} style={{color: isToggleDoor ? theme.colors.black : theme.colors.white}}>
+                  {"Is outdoor"}
+                </ToggleButton>
+                <img
+                  src={!isToggleDoor ? outdoorWhite : outdoor}
+                  className={"inline-block w-5 h-5 self-center mx-2"}
+                />
+              </div>
+            </div>
             <GoogleMapContainer>
               <GoogleMap />
             </GoogleMapContainer>
@@ -130,6 +128,13 @@ const ConfirmAddressModal = ({ isOpenModal, closeModal }) => {
             </div>
           </Content>
         </Container>
+        <LocationUnavailableModal
+          isOpenModal={isLocationUnavailableModal}
+          closeModal={() =>
+            isLocationUnavailableModal &&
+            setState((prev) => ({ ...prev, isLocationUnavailableModal: false }))
+          }
+        />
       </animated.div>
     </animated.div>
   );
@@ -161,19 +166,25 @@ text-center
 `;
 
 const Content = tw.div`
-px-10 
-relative 
+px-10
+relative
 h-full
 mx-auto
 `;
 
 const GoogleMapContainer = tw.div`
-flex 
+flex
 relative
-h-[30vh] 
+h-[30vh]
 md:w-full
 my-5
 `;
+
+const ToggleButton = tw.button`
+h-10
+self-center
+`;
+
 
 const SearchInput = tw.input`
 w-full
@@ -188,7 +199,7 @@ focus:outline-none
 bg-color236
 border-color207
 rounded-md
-my-3  
+my-3
 p-2
 `;
 

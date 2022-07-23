@@ -11,7 +11,9 @@ import trendingBg from "@assets/images/trendingBanner.png";
 import { SwiperSlide } from "swiper/react";
 
 const Trending = () => {
+  
   const banners = [{ img: banner1 }, { img: banner2 }, { img: banner3 }];
+  
   return (
     <Container $col={true}>
       <div className="py-4">
@@ -22,6 +24,8 @@ const Trending = () => {
           slidesPerGroup={2}
           autoplay={true}
           navigation={false}
+          spaceBetween1200={20}
+          slidesPerView1200={3}
           spaceBetween1024={20}
           slidesPerView1024={3}
           slidesPerView768={3}
@@ -45,11 +49,13 @@ const Trending = () => {
 
       <TrendingProduct>
         <Carousel
-          slidesPerGroup={6}
+          slidesPerGroup={2}
           autoplay={false}
           navigation={true}
-          spaceBetween1024={5}
-          slidesPerView1024={6}
+          spaceBetween1200={13.5}
+          slidesPerView1200={6}
+          spaceBetween1024={13.5}
+          slidesPerView1024={5}
           slidesPerView768={4}
           spaceBetween768={6}
           slidesPerView567={3}
@@ -62,9 +68,9 @@ const Trending = () => {
         >
           {[...Array(12)].map((slide, index) => {
             return (
-              <SwiperSlide className="mb-1" key={index} id={`slide-${index}`}>
+              <SwiperSlide className="mb-1 first:ml-2 ml-0 last:mr-2" key={index} style={{width : "auto"}}>
                 <Card
-                  className="first:ml-0 last:mr-3 ml-[13.5px]"
+                  className="w-auto"
                   productName={"Jack Daniel's Tennessee Whiskey"}
                   price={"29.90"}
                   marketPrice={"32.90"}
@@ -90,7 +96,7 @@ const TrendingLink = tw.div`
 flex
 justify-center
 ml-3
-4xl:w-[211px]
+4xl:[211px]
 xl:w-[205px]
 lg:w-[205px]
 sm:w-[27%]

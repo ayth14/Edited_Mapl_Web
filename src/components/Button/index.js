@@ -44,6 +44,7 @@ transition
 delay-75
 hover:shadow-lg
 group
+focus:outline-none
 `;
 
 const Img = tw.img`
@@ -56,7 +57,7 @@ const HoverText = tw.span`
 inline-flex 
 text-color456
 text-[14px]
-font-semibold
+font-bold
 text-color456
 overflow-hidden 
 ease-in-out duration-[0.8s] 

@@ -1,7 +1,7 @@
 import {
   isValidEmail,
   isValidPassword,
-  isValidPhoneNumber,
+  isValidNumber,
   isValidUrl,
   isEmpty,
   isLength,
@@ -13,12 +13,13 @@ import {
   checkArrayLength,
   isValidDate,
   isValidDOB,
+  isValidUserId,
 } from "./isValidate";
 
 export {
   isValidEmail,
   isValidPassword,
-  isValidPhoneNumber,
+  isValidNumber,
   isValidUrl,
   isEmpty,
   isLength,
@@ -30,4 +31,5 @@ export {
   checkArrayLength,
   isValidDate,
   isValidDOB,
+  isValidUserId,
 };

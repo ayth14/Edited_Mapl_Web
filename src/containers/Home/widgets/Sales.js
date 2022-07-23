@@ -18,8 +18,10 @@ const Sales = () => {
           slidesPerGroup={6}
           autoplay={false}
           navigation={true}
-          spaceBetween1024={5}
-          slidesPerView1024={6}
+          spaceBetween1200={13.5}
+          slidesPerView1200={6}
+          spaceBetween1024={13.5}
+          slidesPerView1024={5}
           slidesPerView768={4}
           spaceBetween768={6}
           slidesPerView567={3}
@@ -32,9 +34,9 @@ const Sales = () => {
         >
           {[...Array(12)].map((slide, index) => {
             return (
-              <SwiperSlide className="mb-1" key={index} id={slide-`${index}`}>
+              <SwiperSlide className="mb-1" key={index} id={`${index}`} style={{width : "auto !important"}}>
                 <Card
-                  className="first:ml-0 last:mr-3 ml-[13.5px]"
+                  className="w-auto"
                   productName={"Jack Daniel's Tennessee Whiskey"}
                   price={"29.90"}
                   marketPrice={"32.90"}

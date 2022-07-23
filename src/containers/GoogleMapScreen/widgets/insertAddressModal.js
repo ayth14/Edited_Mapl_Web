@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import tw from "tailwind-styled-components";
 import { animated, useSpring } from "@react-spring/web";
 import { PrimaryText, Button } from "@components";
-import theme from '@theme';
+import theme from "@theme";
+import ConfirmAddressModal from "./confirmAddressModal";
 
 const InsertAddressModal = (props) => {
   const { isOpenModal, closeModal } = props;
 
   const [state, setState] = useState({
-    isToggleModal: false,
+    isConfirmAddressModal: false,
   });
-  const { isToggleModal } = state;
+  const { isConfirmAddressModal } = state;
 
   const hidden = !isOpenModal ? "hidden" : "flex";
 
@@ -22,6 +23,10 @@ const InsertAddressModal = (props) => {
   const modalBackground = useSpring({
     backgroundColor: isOpenModal ? "rgba(0,0,0,0.5)" : "transparent",
   });
+
+  const toggleIsConfirmAddressModal = () => {
+    setState((prev) => ({ ...prev, isConfirmAddressModal: true }));
+  };
 
   return (
     <animated.div
@@ -46,9 +51,17 @@ const InsertAddressModal = (props) => {
               title={"Confirm address"}
               className="bg-black mt-2 font-bold rounded-[3px]"
               titleStyle={{ color: theme.colors.white, fontSize: "15px" }}
+              onClick={toggleIsConfirmAddressModal}
             />
           </div>
         </Container>
+        <ConfirmAddressModal
+          isOpenModal={isConfirmAddressModal}
+          closeModal={() =>
+            isConfirmAddressModal &&
+            setState((prev) => ({ ...prev, isConfirmAddressModal: false }))
+          }
+        />
       </animated.div>
     </animated.div>
   );

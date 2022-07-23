@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@components";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import tw from "tailwind-styled-components";
 import countryFlag from "@assets/images/countryFlag.png";
 import tempIcon from "@assets/images/tempIcon.png";
@@ -51,13 +51,13 @@ import restricted from "@assets/images/restricted.png";
       <CardTag>
         {trend && <span>{"Trend"}</span>}
       </CardTag>
-      <CardImg >
+      <CardImg onClick={handlePage}>
         <Img src={productImg} alt="product image" />
       </CardImg>
       <CardBody>
-        <Link to={"/product"}>
+        <a href="/product">
           <CardTitle className="">{productName}</CardTitle>
-        </Link>
+        </a>
         <CardContent>
           <OurPrice>{price}</OurPrice>
           <MarketPrice>instead {marketPrice}</MarketPrice>
@@ -88,10 +88,6 @@ bg-white
 rounded-[3px] 
 relative
 px-1
-4xl:w-[170px] 
-2xl:w-[165px] 
-xl:w-[130px] 
-w-[150px]
 whitespace-normal
 `;
 
@@ -104,6 +100,7 @@ px-2 py-1
 rounded-tr-[5px]
 uppercase
 `;
+
 const CardBody = tw.div` 
 pb-1
 `;
@@ -133,7 +130,7 @@ mb-2
 `;
 
 const OurPrice = tw.span`
-2xl:text-xl 
+2xl:text-lg 
 xl:text-base 
 font-extrabold 
 font-openSans
@@ -141,7 +138,8 @@ text-gray-900
 `;
 
 const MarketPrice = tw.span`
-2xl:text-xs
+2xl:text-[10px]
+2xl:pr-2
 text-[10px] 
 md:text-xs 
 lg:text-[10px] 

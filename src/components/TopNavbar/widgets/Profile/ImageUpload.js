@@ -14,6 +14,7 @@ const ImageUpload = () => {
     }
     reader.readAsDataURL(event.target.files[0]);
   };
+
   return (
     <UserImage>
       <ImageHolder>
@@ -26,6 +27,7 @@ const ImageUpload = () => {
     </UserImage>
   );
 };
+
 const UserImage = tw.div`
 cursor-pointer
 bg-white
@@ -55,4 +57,5 @@ absolute
 -right-2
 -bottom-2
 `;
+
 export default ImageUpload;

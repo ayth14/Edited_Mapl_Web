@@ -55,6 +55,7 @@
     right: 0;
   }
   .maplNowIcon {font-size: 22px;}
+  .truckIcon {max-width: 35px;}
   .maplNowIcon, .truckIcon{ padding-right: 6px;}
 
 @media ( min-width: 480px){
@@ -76,14 +77,14 @@
   .react-switch { width: 100%; }
   .react-switch-labels {font-size: 10px;}
   .maplNowIcon {font-size: 16px;}
-  .truckIcon {max-width: 30.33335%;}
+  .truckIcon {max-width: 22.33335%;}
 }
 
 @media ( min-width: 1200px){
   .react-switch { width: 100%; }
   .react-switch-labels {font-size: 12px;}
   .maplNowIcon {font-size: 18px;}
-  .truckIcon {max-width: 30.33335%;}
+  .truckIcon {max-width: 36px;}
 }
 
 

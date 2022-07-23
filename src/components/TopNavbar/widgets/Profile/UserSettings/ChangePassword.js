@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Input, Button } from "@components";
-import { Basic } from "@components/Text";
 import tw from "tailwind-styled-components";
+import theme from "@theme";
+
 const ChangePassword = () => {
   const [state, setstate] = useState({
     currentPassword: "",
@@ -16,50 +17,50 @@ const ChangePassword = () => {
   };
 
   return (
-    <PasswordContainer>
-      <PasswordTitle>
-        <Basic
-          style={{ fontWeight: 700 }}
-          className={"2xl:text-3xl xl:text-xl"}
-        >
-          {"Change Password"}
-        </Basic>
-      </PasswordTitle>
-      <Input
-        name={"currentPassword"}
-        title={"Current Password"}
-        type={"password"}
-        value={currentPassword}
-        onChange={onChangeHandler}
-      />
-      <Input
-        name={"newPassword"}
-        title={"New Password"}
-        type={"password"}
-        value={newPassword}
-        onChange={onChangeHandler}
-      />
-      <Input
-        name={"confirmPassword"}
-        title={"Confirm Password"}
-        type={"password"}
-        value={confirmPassword}
-        onChange={onChangeHandler}
-      />
-      <Button className={"bg-black text-white w-24"} title={"To update"} />
-    </PasswordContainer>
+    <Container>
+      <Heading>{"Change Password"}</Heading>
+      <div className="w-full lg:w-[19vw] mt-10">
+          <Input
+            name="currentPassword"
+            value={currentPassword}
+            type={"text"}
+            title={"Current Password"}
+            className="p-2"
+            onChange={onChangeHandler}
+          />
+          <Input
+            name="newPassword"
+            value={newPassword}
+            type={"text"}
+            title={"New Password"}
+            className="p-2"
+            onChange={onChangeHandler}
+          />
+          <Input
+            name="confirmPassword"
+            value={confirmPassword}
+            type={"text"}
+            title={"Confirm New Password"}
+            className="p-2"
+            onChange={onChangeHandler}
+          />
+          <Button
+          title={"To update"}
+          className="bg-color51 sm:w-[20vw] md:w-[8vw] rounded-sm p-3"
+          style={{ color: theme.colors.white }}
+        />
+          </div>
+    </Container>
   );
 };
 
-const PasswordContainer = tw.div`
-text-xl
-xl:w-1/3
-w-1/2
-px-9
+const Container = tw.div`
+m-[13px]
 `;
 
-const PasswordTitle = tw.div`
-my-5
+const Heading = tw.h1`
+text-xl
+font-bold
 `;
 
 export default ChangePassword;

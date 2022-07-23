@@ -11,11 +11,11 @@ export function isValidEmail(email) {
 }
 
 export function isValidPassword(password) {
-  var pw = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,32})/;
+  var pw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#@$!%*?&])[A-Za-z\d#@$!%*?&]{8,}$/;
   return pw.test(password);
 }
 
-export function isValidPhoneNumber(phone_num) {
+export function isValidNumber(phone_num) {
   var pn = /^[0-9]{8,13}$/;
   return pn.test(phone_num);
 }
@@ -23,6 +23,11 @@ export function isValidPhoneNumber(phone_num) {
 export function isValidUrl(website_url) {
   var ur = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
   return ur.test(website_url);
+}
+
+export function isValidUserId(uid) {
+  var ui = /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{8,32})/;
+  return ui.test(uid);
 }
 
 export const isValidDate = (date) => {

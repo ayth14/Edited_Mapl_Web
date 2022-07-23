@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import tw from "tailwind-styled-components";
-import OTPInput, { ResendOTP } from "otp-input-react";
+import OTPInput from "otp-input-react";
 import { PrimaryText, Button } from "@components";
 import { animated, useSpring } from "@react-spring/web";
 import { XIcon } from "@heroicons/react/solid";
 import theme from "@theme";
-import { Link } from "react-router-dom";
 
 const OtpModal = (props) => {
   const {
@@ -73,12 +72,12 @@ const OtpModal = (props) => {
               disabled={false}
               className="flex mt-4 w-full lg:justify-center sm:justify-center justify-start mr-0"
               inputStyles={{
-                backgroundColor: "rgb(251,251,251)",
+                backgroundColor: theme.colors.gray[1],
                 height: "50px",
                 width: "44px",
                 borderWidth: 1,
                 borderRadius: "5%",
-                borderColor: "rgb(172,172,172)",
+                borderColor: theme.colors.gray[2],
               }}
             />
             <Button

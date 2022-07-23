@@ -7,7 +7,10 @@ import logOut from "@assets/images/logoutIcon.png";
 import { useNavigate } from "react-router-dom";
 const Profile = (props) => {
   const navigate = useNavigate();
-  const { openProfile, userName, balance, profileclassname } = props;
+  
+  const { openProfile, userName, profileclassname } = props;
+  
+  const balance = "0.00"
   const handleLogOut = () => {
     navigate("/");
   };
@@ -15,17 +18,21 @@ const Profile = (props) => {
   const handleProfile = () => {
     navigate("/profile/account-settings");
   };
-  
+
+  const handleVoucher = () => {
+    navigate("/profile/vouchers")
+  }
+
   return (
-    <ProfileContainer $open={openProfile} className={profileclassname}>
-      <div className="flex-1 sticky top-0 overflow-y-auto scrollbar-none">
+    <ProfileContainer $open={openProfile} className={profileclassname} >
+      <div className="flex-1 relative top-0 h-full overflow-y-auto scrollbar-none">
         <UserValue onClick={handleProfile}>
           <ImageUpload />
           <Basic className={"pl-5 capitalize"} style={{ fontWeight: 700 }}>
             {userName}
           </Basic>
         </UserValue>
-        <Vouchers>
+        <Vouchers onClick={handleVoucher}>
           <Basic style={{ fontWeight: 600 }}>{"Voucher Balance"}</Basic>
           <Basic style={{ fontWeight: 600 }}>
             {"Credit "}
@@ -67,15 +74,19 @@ const Profile = (props) => {
 
 const ProfileContainer = tw.div`
 ${(p) => (!p.$open ? "hidden" : "flex")}
+flex-col
 bg-white
 shadow-cartBtn
 w-[280px]
-fixed
-top-28
+xl:fixed
+xl:top-28
+xl:h-screen
+top-36
+h-[40vh]
+absolute
 right-0
 bottom-4
-flex-col
-z-30
+z-20
 peer-transition
 ease-out
 delay-150
@@ -100,6 +111,7 @@ border-b-[5px]
 border-color239
 bg-white
 py-4 px-5
+cursor-pointer
 `;
 
 const OptionContent = tw.div`
@@ -124,4 +136,5 @@ flex-row
 items-center
 p-5
 `;
+
 export default Profile;

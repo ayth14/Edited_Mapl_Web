@@ -6,8 +6,8 @@ const GoogleMap = (props) => {
   const { style, className } = props;
 
   return (
-      <Map google={props.google} style={style} className={`${className}`} zoom={18}>
-        <Marker name={"Current location"} />
+      <Map google={props.google} style={style} initialCenter={{lat:46.85281, lng: 7.58112}} className={`${className}`} zoom={14}>
+        <Marker name={"Current location"}  position={{lat: 46.85281, lng:  7.58112}} />
         <InfoWindow></InfoWindow>
       </Map>
   )

@@ -24,8 +24,8 @@ function ExtraValues() {
         {info.map((values)=>{
             return(
                 <ExtraContent>
-                    <span className='mr-2'>{values.title}</span>
-                    <span>{values.value}</span>
+                    <p className='mr-2 text-color155 max-w-fit'>{values.title}</p>
+                    <p>{values.value}</p>
                 </ExtraContent>
             );
         })}
@@ -36,12 +36,14 @@ function ExtraValues() {
 const HeadingText = tw.span`
 text-xl 
 font-raleway 
-font-bold"
+font-bold
+py-3
 `
 const ExtraContent = tw.div`
 border-b 
 border-b-color172 
 flex 
 items-center
+py-3
 `
 export default ExtraValues

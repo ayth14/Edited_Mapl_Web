@@ -2,6 +2,7 @@ import React from "react";
 import tw from "tailwind-styled-components";
 import { Card, Carousel } from "@components";
 import { SwiperSlide } from "swiper/react";
+import {MdChevronRight} from "react-icons/md";
 import styled from "styled-components";
 import jackDaniel from "@assets/images/product-Img/jackDaniel.png";
 import plusIcon from "@assets/images/plusIcon.png";
@@ -27,6 +28,8 @@ const ProductRecommend = () => {
           autoplay={false}
           slidesPerGroup={6}
           slidesPerView={6}
+          slidesPerView1200={6}
+          spaceBetween1200={6}
           slidesPerView1024={6}
           spaceBetween1024={6}
           slidesPerView768={4}
@@ -59,10 +62,11 @@ const ProductRecommend = () => {
       </ProductContent>
       <ProductContent>
         <Carousel
-          navigation={true}
           autoplay={false}
           slidesPerGroup={2}
           slidesPerView={2.55}
+          slidesPerView1200={2.45}
+          spaceBetween1200={100}
           slidesPerView1024={2.45}
           spaceBetween1024={100}
           slidesPerView768={2}
@@ -74,10 +78,19 @@ const ProductRecommend = () => {
           slidesPerView280={2}
           spaceBetween280={5}
           carouselclass={"w-full h-full"}
+          navigation = {
+            {
+              nextEl : ".info-next",
+              prevEl : ".info-prev",
+            }
+          }
         >
           {productInfo.map((info, index) => {
-            return <SwiperSlide key={index}>{info.element}</SwiperSlide>;
+            return <SwiperSlide style={{width : "100% !important",}} key={index}>{info.element}</SwiperSlide>;
           })}
+          <BtnNxt className="info-next">
+            <MdChevronRight size={48}/>
+          </BtnNxt>
         </Carousel>
       </ProductContent>
 
@@ -91,6 +104,8 @@ const ProductRecommend = () => {
           autoplay={false}
           slidesPerGroup={6}
           slidesPerView={6}
+          slidesPerView1200={6}
+          spaceBetween1200={6}
           slidesPerView1024={6}
           spaceBetween1024={6}
           slidesPerView768={4}
@@ -123,9 +138,12 @@ const ProductRecommend = () => {
               </SwiperSlide>
             );
           })}
-          <Btn className="swiper-next">
-            next
-          </Btn>
+          <BtnNxt className="swiper-next">
+            <MdChevronRight size={25}/>
+          </BtnNxt>
+          <BtnPrv className="swiper-prev">
+            prev
+          </BtnPrv>
         </Carousel> 
       </OtherProduct>
     </Container>
@@ -153,14 +171,17 @@ px-4
 py-10
 `;
 
-const Btn = styled.button`
-  bottom: 10px;
+const BtnNxt = styled.button`
+  top: 40%;
+  right: 0;
+  margin-right: 10px;
   position: absolute;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(50px);
-  border-radius: 10px;
-  width: 34px;
-  height: 34px;
+  border-radius: 100%;
+  box-shadow : 0 3px 6px 0 rgb(0,0,0, 0.16);
+  width: 58px;
+  height: 58px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -169,6 +190,10 @@ const Btn = styled.button`
   z-index: 2;
   outline: none;
   border: none;
+`;
+
+const BtnPrv = styled.button`
+display : none;
 `;
 
 export default ProductRecommend;

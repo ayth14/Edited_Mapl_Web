@@ -1,69 +1,76 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import tw from "tailwind-styled-components";
 import { IoMenu, IoClose } from "react-icons/io5";
-import { PrimaryText } from "@components/Text";
-import {AiOutlineUser} from "react-icons/ai"
-import {IoMdHeartEmpty} from "react-icons/io"
-import {FiShoppingCart} from "react-icons/fi"
+import { AiOutlineUser } from "react-icons/ai";
+import { IoMdHeartEmpty } from "react-icons/io";
+import { FiShoppingCart } from "react-icons/fi";
 import SwitchOption from "./SwitchOption";
 import Profile from "./Profile";
+import { useNavigate } from "react-router-dom";
 
 const UserData = (props) => {
-    const {userclassname} = props;
-    const [openMenu, setOpenMenu] = useState(false);
-    const [openProfile, setOpenProfile] = useState(false)
-    const handleMenu = () => {
-      setOpenMenu(true);
-    };
-    
-    const handleUser = () => {
-        console.log("userClicked");
-        setOpenProfile(!openProfile)
-      };
-      const handleWishlist = () => {
-        console.log("ListClicked");
-      };
-      const handleCart = () => {
-        console.log("CartClicked");
-      };
-      const handleClose = () => {
-        setOpenMenu(false)
-      }
+  const { userclassname } = props;
+
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const [openProfile, setOpenProfile] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleMenu = () => {
+    setOpenMenu(!openMenu);
+  };
+
+  const handleUser = () => {
+    setOpenProfile(!openProfile);
+  };
+
+  const handleWishlist = () => {
+    navigate("/wishlist");
+  };
+
+  const handleCart = () => {
+    navigate("/cart");
+  };
+
   const Links = [
     {
-        name: "Gowrithansan",
-        link: handleUser,
-        icon: <AiOutlineUser size={25}/>,
-      },
-      {
-        name: "Wishlist",
-        link: handleWishlist,
-        icon: <IoMdHeartEmpty size={25}/>,
-        badge: 1,
-        right: "xl:right-[2px] lg:right-[48px] top-[-3px] right-[58px]"
-      },
-      {
-        name: "Cart",
-        link: handleCart,
-        icon: <FiShoppingCart size={25}/>,
-        badge: 2,
-        right:"xl:right-[-6px] lg:right-[28px] right-[34px]"
-      },
+      name: "Gowrithansan",
+      link: handleUser,
+      icon: <AiOutlineUser size={25} />,
+    },
+    {
+      name: "Wishlist",
+      link: handleWishlist,
+      icon: <IoMdHeartEmpty size={25} />,
+      badge: 1,
+      right: "xl:right-[2px] lg:right-[48px] top-[-3px] right-[58px]",
+    },
+    {
+      name: "Cart",
+      link: handleCart,
+      icon: <FiShoppingCart size={25} />,
+      badge: 2,
+      right: "xl:right-[-6px] lg:right-[28px] right-[34px]",
+    },
   ];
+
   const UserDetails = (icon, name, link, index, badge, right) => {
     return (
-        <UserLi key={index}>
+      <UserLi key={index}>
         <CustomButton onClick={link}>
           {icon}
-          {console.log(badge)}
-          {badge && index!=0 ? <BadgeVal className={`${right}`}>{badge}</BadgeVal> : null}
+          {badge && index != 0 ? (
+            <BadgeVal className={`${right}`}>{badge}</BadgeVal>
+          ) : null}
           <Text>{name}</Text>
         </CustomButton>
       </UserLi>
     );
   };
+  
   return (
-    <Container className={userclassname} onBlur={handleClose}>
+    <Container className={userclassname}>
       <MenuBtn
         data-collapse-toggle="mobile-menu"
         type="button"
@@ -89,7 +96,11 @@ const UserData = (props) => {
           })}
         </MenuList>
       </MenuContent>
-      <Profile openProfile={openProfile} userName={"swissan kandaswamy"} balance={"0.00"}/>
+      <Profile
+        openProfile={openProfile}
+        userName={"swissan kandaswamy"}
+        balance={"0.00"}
+      />
     </Container>
   );
 };
@@ -99,7 +110,8 @@ xl:relative
 lg:absolute
 absolute
 right-0
-z-30
+z-10
+bg-white
 `;
 
 const MenuContent = tw.div`
@@ -120,6 +132,7 @@ xl:shadow-none
 bg-white
 shadow-xl
 px-3
+z-10
 `;
 
 const MenuList = tw.ul`

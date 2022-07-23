@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import tw from "tailwind-styled-components";
 import { Input, Button } from "@components";
-import { Basic } from "@components/Text";
+import theme from "@theme";
+
 const AccountSettings = () => {
   const [state, setState] = useState({
     fname: "",
@@ -19,77 +20,86 @@ const AccountSettings = () => {
   const onChangeHandler = (event) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
+
   return (
-    <AccountContainer>
-      <AccountTitle>
-        <Basic
-          style={{ fontWeight: 700 }}
-          className={"2xl:text-3xl xl:text-xl"}
-        >
-          {"Account Settings"}
-        </Basic>
-      </AccountTitle>
-      <div className="grid lg:gap-4 lg:grid-cols-2">
+    <Container>
+      <Heading>{"Account Settings"}</Heading>
+      <div className="w-full lg:w-[38vw] mt-10">
+        <div className="grid grid-cols-2 gap-x-5">
+          <Input
+            name="fname"
+            value={fname}
+            type={"text"}
+            title={"First Name"}
+            className="p-2"
+            onChange={onChangeHandler}
+          />
+          <Input
+            name="lname"
+            value={lname}
+            type={"text"}
+            title={"Last Name"}
+            className="p-2"
+            onChange={onChangeHandler}
+          />
+          <Input
+            name="email"
+            value={email}
+            type={"email"}
+            title={"E-mail"}
+            className="p-2"
+            onChange={onChangeHandler}
+          />
+          <Input
+            name="mobile_num"
+            value={mobile_num}
+            type={"tel"}
+            title={"Mobile Number"}
+            className="p-2"
+            onChange={onChangeHandler}
+          />
+          <Input
+            name="date_of_birth"
+            value={date_of_birth}
+            type={"date"}
+            title={"Date of Birth"}
+            className="p-2"
+            onChange={onChangeHandler}
+          />
+          <Input
+            name="lang"
+            value={lang}
+            type={"text"}
+            title={"Language"}
+            className="p-2"
+            onChange={onChangeHandler}
+          />
+        </div>
         <Input
-          name={"fname"}
-          title={"First Name"}
-          value={fname}
+          name="vat_num"
+          value={vat_num}
+          type={"text"}
+          title={"UID / VAT Number"}
+          className="p-2"
           onChange={onChangeHandler}
         />
-        <Input
-          name={"lname"}
-          title={"Last Name"}
-          value={lname}
-          onChange={onChangeHandler}
+        <Button
+          title={"To update"}
+          className="bg-color51 sm:w-[20vw] md:w-[8vw] rounded-sm p-3"
+          style={{ color: theme.colors.white }}
         />
       </div>
-      <div className="grid lg:gap-4 lg:grid-cols-2">
-        <Input
-          name={"email"}
-          title={"E-mail"}
-          value={email}
-          onChange={onChangeHandler}
-        />
-        <Input
-          name={"mobile_num"}
-          title={"Moblie Number"}
-          value={mobile_num}
-          onChange={onChangeHandler}
-        />
-      </div>
-      <div className="grid lg:gap-4 lg:grid-cols-2">
-        <Input
-          name={"date_of_birth"}
-          title={"Date Of Birth"}
-          value={date_of_birth}
-          onChange={onChangeHandler}
-        />
-        <Input
-          name={"lang"}
-          title={"Language"}
-          value={lang}
-          onChange={onChangeHandler}
-        />
-      </div>
-      <Input
-        name={"vat_num"}
-        title={"UID/VAT Number"}
-        value={vat_num}
-        onChange={onChangeHandler}
-      />
-      <Button className={"bg-black text-white w-24"} title={"To update"} />
-    </AccountContainer>
+    </Container>
   );
 };
 
-const AccountContainer = tw.div`
-text-xl
-w-1/2
-px-9
+const Container = tw.div`
+m-[13px]
 `;
 
-const AccountTitle = tw.div`
-my-5
+const Heading = tw.h1`
+text-xl
+font-bold
 `;
 
 export default AccountSettings;

@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
+import tw from 'tailwind-styled-components';
 import Box from '@mui/material/Box';
 import { MdStarBorder, MdStar } from 'react-icons/md';
 import { Basic } from '@components';
 import { Link } from 'react-router-dom';
 
 const Ratings = (props) => {
-  const { precision = 1, totalStars = totalStars, label , emptyIcon = MdStar, filledIcon = MdStarBorder} = props
+  const { precision = 0.5, totalStars = totalStars, label , emptyIcon = MdStar, filledIcon = MdStarBorder} = props
   const [activeStar, setActiveStar] = useState(-1);
   const [hoverActiveStar, setHoverActiveStar] = useState(-1);
   const [isHovered, setIsHovered] = useState(false);
@@ -31,19 +32,21 @@ const Ratings = (props) => {
   };
 
   const handleMouseLeave = (e) => {
-    setHoverActiveStar(-1); // Reset to default state
+    setHoverActiveStar(-1); 
     setIsHovered(false);
   };
   const EmptyIcon = emptyIcon;
   const FilledIcon = filledIcon;
 
   return (
+    <Container>
     <Box
       sx={{
         display: 'inline-flex',
         position: 'relative',
         cursor: 'pointer',
-        textAlign: 'left'
+        textAlign: 'left',
+        gap:'2px'
       }}
       onClick={handleClick}
       onMouseMove={handleMouseMove}
@@ -65,7 +68,7 @@ const Ratings = (props) => {
           <Box
             position={'relative'}
             sx={{
-              cursor: 'pointer'
+              cursor: 'pointer',
             }}
             key={index}
           >
@@ -78,7 +81,6 @@ const Ratings = (props) => {
             >
               <FilledIcon size={20}/>
             </Box>
-            {/*Note here */}
             <Box
               sx={{
                 color: showEmptyIcon ? 'black' : 'inherit'
@@ -89,13 +91,19 @@ const Ratings = (props) => {
           </Box>
         );
       })}
-      {label && (
-        <Link to={"/home"} className={"pl-3"}>
+    </Box>
+    {label && (
+        <Link to={"/home"} className={"ml-2"}>
           <Basic>{label}</Basic>
         </Link>
       )}
-    </Box>
+    </Container>
   );
 };
+
+const Container = tw.div`
+flex
+items-center
+`;
 
 export default Ratings;

@@ -14,7 +14,7 @@ import switzerlandLogo from "@assets/images/flag-switzerland.png";
 import checkIcon from "@assets/images/openedGray.png";
 import greenCheckIcon from "@assets/images/opened.png";
 import OtpModal from "./widgets/OtpModal";
-import { isValidName, isValidPhoneNumber, isValidEmail, isValidPassword } from "@utils";
+import { isValidName, isValidNumber, isValidEmail, isValidPassword } from "@utils";
 import { toast } from "react-toastify";
 import { en } from "@i18n";
 
@@ -56,11 +56,19 @@ const Registration = () => {
   };
 
   const toggleMobileVerificationModal = () => {
-    setState((prev) => ({ ...prev, isMobileVerificationModal: true }));
+    if(mobile_num && !isValidNumber(mobile_num.trim())){
+      toast.error(en.errors.phoneNumValidate)
+    }else{
+      setState((prev) => ({ ...prev, isMobileVerificationModal: true }));
+    }
   };
 
   const toggleEmailVerificationModal = () => {
-    setState((prev) => ({ ...prev, isEmailVerificationModal: true }));
+    if (email && !isValidEmail(email.trim())) {
+      toast.error(en.errors.emailValidate)
+    } else {
+      setState((prev) => ({ ...prev, isEmailVerificationModal: true }));
+    }
   };
 
   const onChangeMobileNum = (event) => {
@@ -139,10 +147,10 @@ const Registration = () => {
       (lname && !isValidName(lname.trim()))
     ) {
       toast.error(en.errors.nameValidate);
-    } else if (mobile_num && !isValidPhoneNumber(mobile_num.trim())) {
-      toast.error(en.errors.phoneNumValidate);
-    } else if (email && !isValidEmail(email.trim())) {
-      toast.error(en.errors.emailValidate);
+    } else if (!verifyMobileNum) {
+      toast.error(en.errors.verifyMobileNum);
+    } else if (!verifyEmail) {
+      toast.error(en.errors.verifyEmail);
     } else if (password && !isValidPassword(password.trim())) {
       toast.error(en.errors.passwordValidate);
     } else if (password !== confirmPassword) {
@@ -295,7 +303,6 @@ const Registration = () => {
                 ? "self-center bg-black mt-[20px] w-full"
                 : "self-center bg-black mt-[20px] w-full"
             }`}
-            // disabled={mobile_num ? true : false }
           />
           <Button
             title={"APPLY FOR A B2B ACCOUNT"}

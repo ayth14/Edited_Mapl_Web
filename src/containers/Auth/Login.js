@@ -16,11 +16,7 @@ import appleIcon from "@assets/images/appleIcon.png";
 import switzerlandLogo from "@assets/images/flag-switzerland.png";
 import theme from "@theme";
 import { en } from "@i18n";
-import {
-  isEmpty,
-  isValidEmail,
-  isValidPassword,
-  isValidPhoneNumber} from "@utils";
+import { isEmpty, isValidEmail, isValidPassword, isValidNumber } from "@utils";
 import { toast } from "react-toastify";
 
 const Login = () => {
@@ -40,11 +36,9 @@ const Login = () => {
   };
 
   const onHandleChange = (event) => {
-    isNaN(event.target.value) ? setState(prev=>({...prev, [event.target.name] : event.target.value, signInWithMobile: false })) : setState(prev => ({...prev,[event.target.name]:event.target.value, signInWithMobile:true}))
-  }
-
-  const toggleTextButton = () => {
-    setState({ ...state, signInWithMobile: !signInWithMobile });
+    (isNaN(event?.target?.value) || event.target.value.length == 0)
+      ? setState((prev) => ({ ...prev, signInWithMobile: false , email: event.target.value }))
+      : setState((prev) => ({ ...prev, signInWithMobile: true, phone_num: event.target.value }))
   };
 
   const navigateToHomePage = () => {
@@ -67,9 +61,9 @@ const Login = () => {
       toast.error(en.errors.empty_credential);
     } else if (phone_num.trim().length < 10) {
       toast.error(en.errors.minimum_phoneNum);
-    } else if (phone_num && !isValidPhoneNumber(phone_num.trim())) {
+    } else if (phone_num && !isValidNumber(phone_num.trim())) {
       toast.error(en.errors.validPhoneNum);
-    } else if (code && !isValidPhoneNumber(code.trim())) {
+    } else if (code && !isValidNumber(code.trim())) {
       toast.error("Please enter valid code");
     } else {
       toast.success(en.success.success);
@@ -84,26 +78,28 @@ const Login = () => {
         <AuthHeader />
         <LoginContent>
           <div className="py-[25px]">
-              <Input
-                name={signInWithMobile ? "phone_num" : "email"}
-                id={signInWithMobile ? "phone_num" : "email"}
-                value={signInWithMobile ? phone_num : email}
-                type={signInWithMobile ? "tel" :"email"}
-                title={"E-mail or Mobile Number"}
-                placeholder={signInWithMobile ? "+41 79 774 53 76" : "kunde@mapl.ch"}
-                inputicon={signInWithMobile ? switzerlandLogo : null}
-                onChange={onHandleChange}
-                />
-              <Input
-                name={signInWithMobile ? "code" : "password"}
-                id={signInWithMobile ? "code" : "password"}
-                value={signInWithMobile ? code : password}
-                type={signInWithMobile ? "text" : "password"}
-                title={signInWithMobile ? "Enter code" : "Password"}
-                placeholder={signInWithMobile ? "Code" : "Password"}
-                onChange={onHandleClick}
-              />
-            </div>
+            <Input
+              name={signInWithMobile ? "phone_num" : "email"}
+              id={signInWithMobile ? "phone_num" : "email"}
+              value={signInWithMobile ? phone_num : email}
+              type={signInWithMobile ? "tel" : "email"}
+              title={"E-mail or Mobile Number"}
+              placeholder={
+                signInWithMobile ? "+41 79 774 53 76" : "kunde@mapl.ch"
+              }
+              inputicon={signInWithMobile ? switzerlandLogo : null}
+              onChange={onHandleChange}
+            />
+            <Input
+              name={signInWithMobile ? "code" : "password"}
+              id={signInWithMobile ? "code" : "password"}
+              value={signInWithMobile ? code : password}
+              type={signInWithMobile ? "text" : "password"}
+              title={signInWithMobile ? "Enter code" : "Password"}
+              placeholder={signInWithMobile ? "Code" : "Password"}
+              onChange={onHandleClick}
+            />
+          </div>
           <Button
             title={signInWithMobile ? "Send" : "SIGN IN"}
             titleStyle={{ color: theme.colors.white }}
@@ -115,7 +111,7 @@ const Login = () => {
             className={"self-center bg-black mt-[-10px] w-full"}
           />
           <div className="flex flex-col text-center">
-            <div className="py-[16px]" onClick={toggleTextButton}>
+            <div className="py-[16px]">
               {!signInWithMobile ? (
                 <PrimaryText className="flex justify-center underline font-sans font-semibold text-[11px]">
                   {"I need help with my password!"}

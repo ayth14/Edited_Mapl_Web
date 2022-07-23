@@ -1,18 +1,15 @@
 import React, { useState } from "react";
 import tw from "tailwind-styled-components";
+import { useNavigate } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 import { XIcon } from "@heroicons/react/solid";
 import { PrimaryText, Button, Input } from "@components";
 import theme from "@theme";
 import { HiOutlinePencil } from "react-icons/hi";
+import { toast } from "react-toastify";
 
 const LocationUnavailableModal = (props) => {
   const { isOpenModal, closeModal } = props;
-
-  const [state, setState] = useState({
-    isToggleModal: false,
-  });
-  const { isToggleModal } = state;
 
   const hidden = !isOpenModal ? "hidden" : "flex";
 
@@ -24,6 +21,12 @@ const LocationUnavailableModal = (props) => {
   const modalBackground = useSpring({
     backgroundColor: isOpenModal ? "rgba(0,0,0,0.5)" : "transparent",
   });
+
+  const navigate = useNavigate();
+
+  const goBackModal = () => {
+    navigate("/home");
+  };
 
   const CrossButton = () => {
     return (
@@ -52,17 +55,44 @@ const LocationUnavailableModal = (props) => {
                 }
               </PrimaryText>
             </div>
-            <Input title={"NAME"} titleStyle={{fontWeight: 'bold'}} placeholder={"Name"} className="rounded-sm" />
-            <Input title={"EMAIL"} titleStyle={{fontWeight: 'bold'}} placeholder={"email@.com"} />
-            <Input title={"STREET"}  titleStyle={{fontWeight: 'bold'}} placeholder={"Street Address"} />
+            <Input
+              title={"NAME"}
+              titleStyle={{ fontWeight: "bold" }}
+              type={'text'}
+              placeholder={"Name"}
+              className="rounded-sm"
+            />
+            <Input
+              title={"EMAIL"}
+              titleStyle={{ fontWeight: "bold" }}
+              type={'email'}
+              placeholder={"email@.com"}
+            />
+            <Input
+              title={"STREET"}
+              titleStyle={{ fontWeight: "bold" }}
+              type={'text'}
+              placeholder={"Street Address"}
+            />
             <div className="grid lg:grid-cols-2 lg:gap-4">
-              <Input title={"POSTAL CODE"}  titleStyle={{fontWeight: 'bold'}} placeholder={"Postal Code"} />
-              <Input title={"CITY"}  titleStyle={{fontWeight: 'bold'}} placeholder={"City"} />
+              <Input
+                title={"POSTAL CODE"}
+                titleStyle={{ fontWeight: "bold" }}
+                type={'text'}
+                placeholder={"Postal Code"}
+              />
+              <Input
+                title={"CITY"}
+                titleStyle={{ fontWeight: "bold" }}
+                type={'text'}
+                placeholder={"City"}
+              />
             </div>
             <Button
               title={"Confirm"}
               className="w-full bg-black mt-4"
               titleStyle={{ color: theme.colors.white }}
+              onClick={goBackModal}
             />
             <PrimaryText className="flex text-center px-4 my-4">
               {

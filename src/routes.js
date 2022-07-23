@@ -11,6 +11,9 @@ const GoogleMap = lazy(() => import("@containers/GoogleMapScreen"));
 const Products = lazy(() => import("@containers/Products"));
 const ProductDetail = lazy(() => import("@containers/ProductDetail"));
 const UserAccount = lazy(() => import("@containers/UserAccount"));
+const Wishlist = lazy(() => import("@containers/Wishlist"));
+const Cart = lazy(() => import("@containers/Cart"));
+const Checkout = lazy(() => import("@containers/Checkout"));
 
 const routes = [
   { exact: true, 
@@ -74,7 +77,21 @@ const routes = [
     name: "profile", 
     element: <UserAccount/> 
   },
-
+  { exact: true, 
+    path: "/wishlist", 
+    name: "wishlist", 
+    element: <Wishlist/> 
+  },
+  { exact: true, 
+    path: "/cart", 
+    name: "cart", 
+    element: <Cart/> 
+  },
+  { exact: true, 
+    path: "/checkout", 
+    name: "checkout", 
+    element: <Checkout/> 
+  },
 ];
 
 export default routes;

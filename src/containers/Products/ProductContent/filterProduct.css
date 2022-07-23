@@ -13,7 +13,7 @@
     padding: 0.5rem 0.4rem;
     border: 1px solid rgb(172, 172, 172);
     border-radius: 6px;
-    margin-right: 1.275rem;
+    margin-right: 1.5rem;
     width: auto !important;
 }
 .slick-slide div{ display: flex; align-items: center; }
@@ -26,7 +26,7 @@
     content: "\f054" !important;
 }
 .slick-next{ right: -6px; }
-.slick-next, .slick-prev { top: 45%;}
+.slick-next, .slick-prev { top: 45%; z-index: 10;}
 
 button.slick-arrow.slick-next {
     background-color: #fff;

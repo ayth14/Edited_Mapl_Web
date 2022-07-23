@@ -13,6 +13,8 @@ const Carousel = (props) => {
     slidesPerView,
     autoplay,
     navigation,
+    spaceBetween1200,
+    slidesPerView1200,
     spaceBetween1024,
     slidesPerView1024,
     slidesPerView768,
@@ -57,6 +59,10 @@ const Carousel = (props) => {
         1024: {
           slidesPerView: slidesPerView1024,
           spaceBetween: spaceBetween1024,
+        },
+        1200: {
+          slidesPerView: slidesPerView1200,
+          spaceBetween: spaceBetween1200,
         },
       }}
     >

@@ -3,7 +3,7 @@ import tw from "tailwind-styled-components";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Button, HeadingText, Ratings } from "@components";
 import { Basic, BasicBold } from "@components/Text";
-import plusIcon from "@assets/images/plusIcon.png"
+import plusIcon from "@assets/images/plusIcon.png";
 import tempIcon from "@assets/images/tempIcon.png";
 import uniqueCost from "@assets/images/uniqueCost.png";
 import pack6CostIcon from "@assets/images/pack6Cost.png";
@@ -11,7 +11,7 @@ import pack12CostIcon from "@assets/images/pack12Cost.png";
 import { useState } from "react";
 
 const ProductInfo = (props) => {
-  const [wishList, setWishList] = useState(false)
+  const [wishList, setWishList] = useState(false);
   const {
     productImg,
     productName,
@@ -25,30 +25,44 @@ const ProductInfo = (props) => {
     { img: pack6CostIcon, title: "6-Pack CHF 8.50", margin: "10px" },
     { img: pack12CostIcon, title: "12-Pack CHF 6.90", margin: "7px" },
   ];
-  const handleWishList = () => { setWishList(!wishList) }
+  const handleWishList = () => {
+    setWishList(!wishList);
+  };
   return (
     <Container>
       <ProductImage>
-        <img src={productImg} alt="" className="max-w-[40%] pointer-events-none" />
+        <img
+          src={productImg}
+          alt=""
+          className="max-w-[40%] pointer-events-none"
+        />
         <WishList onClick={handleWishList}>
-          {wishList ? <AiFillHeart size={30} color={'red'}/> : <AiOutlineHeart size={30}/>}
+          {wishList ? (
+            <AiFillHeart size={30} color={"red"} />
+          ) : (
+            <AiOutlineHeart size={30} />
+          )}
         </WishList>
         <Storage>
-          <img src={tempIcon} alt="" className="max-w-[35%] mx-auto pointer-events-none" />
+          <img
+            src={tempIcon}
+            alt=""
+            className="max-w-[35%] mx-auto pointer-events-none"
+          />
           <BasicBold>Cooled</BasicBold>
         </Storage>
       </ProductImage>
       <ProductDetail>
         <ProductContent>
-        <HeadingText>{productName}</HeadingText>
-        <ProductRating>
-          <div className="border rounded-2 py-[4px] px-[6px]">
-            <Basic>{"500 stk An Larger"}</Basic>
-          </div>
-          <div className="">
-            <Ratings totalStars={5} label={"Rating"}/>
-          </div>
-        </ProductRating>
+          <HeadingText>{productName}</HeadingText>
+          <ProductRating>
+            <div className="border rounded-2 py-[4px] px-[6px]">
+              <Basic>{"500 stk An Larger"}</Basic>
+            </div>
+            <div className="">
+              <Ratings totalStars={5} label={"Rating"} />
+            </div>
+          </ProductRating>
         </ProductContent>
         <Basic>{productTitle}</Basic>
         <ProductCost>
@@ -73,11 +87,7 @@ const ProductInfo = (props) => {
           })}
         </ProductCost>
         <ProductMessage>
-          <Img
-            src={restrictedIcon}
-            alt=""
-            className=""
-          />
+          <Img src={restrictedIcon} alt="" className="" />
           <div className="flex flex-col px-3">
             <BasicBold>
               {"We only deliver to persons of legal age (>18)"}
@@ -101,7 +111,9 @@ const ProductInfo = (props) => {
             icon={plusIcon}
             iconStyle={{ width: "auto", height: "17px" }}
             title={"Add to Cart"}
-            className={"bg-white shadow-cartBtn items-center rounded-[30px] w-auto"}
+            className={
+              "bg-white shadow-cartBtn items-center rounded-[30px] w-auto"
+            }
             titleStyle={{
               fontWeight: "600",
               fontFamily: "Segoe UI, sans-serif",
@@ -169,7 +181,8 @@ const ProductRating = tw.div`
 flex
 flex-row
 justify-between
-`
+py-2
+`;
 
 const ProductPrice = tw.div`
 flex

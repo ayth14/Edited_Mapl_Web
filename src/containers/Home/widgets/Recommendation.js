@@ -21,7 +21,7 @@ const Recommendation = () => {
             return (
               <Slide>
                 <Card
-                  className="whitespace-normal "
+                  className="4xl:w-[175px] 2xl:w-[155px] xl:w-[130px] w-[135px]"
                   productName={"Jack Daniel's Tennessee Whiskey"}
                   price={"29.90"}
                   marketPrice={"32.90"}
@@ -73,7 +73,6 @@ my-1
 first:ml-0
 `;
 
-
 const RecommendBanner = tw.div`
 2xl:w-5/12
 xl:w-5/12 
@@ -83,16 +82,19 @@ xl:mb-1
 lg:mb-5
 poniter-events-none
 `;
+
 const RecommendTitle = tw.div`
 py-2
 text-left
 w-full
 `;
+
 const BannerContainer = tw.div`
 w-full 
 h-full 
 flex
 `;
+
 const BannerContent = tw.div`
 w-full 
 h-full 
@@ -100,6 +102,7 @@ relative
 z-0
 bg-green-400
 `;
+
 const Img = tw.img`
 w-full 
 h-full 
@@ -109,6 +112,7 @@ lg:static
 xl:absolute 
 pointer-events-none
 `;
+
 const BannerLink = tw.div`
 absolute 
 top-2 
@@ -149,4 +153,5 @@ w-[65%]
 hover:shadow-md
 mt-4
 `;
+
 export default Recommendation;

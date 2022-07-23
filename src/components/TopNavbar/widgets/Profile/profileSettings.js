@@ -5,22 +5,22 @@ const profileSetting = [
       {
         text: "Account Settings",
         icon: require("@assets/images/profile-setting/accountSetting.png"),
-        to: "account-settings",
+        to: "/profile/account-settings",
       },
       {
         text: "Change Password",
         icon: require("@assets/images/profile-setting/changePassword.png"),
-        to: "change-password",
+        to: "/profile/change-password",
       },
       {
         text: "Address",
         icon: require("@assets/images/profile-setting/address.png"),
-        to: "address",
+        to: "/profile/address",
       },
       {
         text: "Invoice Details",
         icon: require("@assets/images/profile-setting/invoiceDetail.png"),
-        to: "invoice-details",
+        to: "/profile/invoice-details",
       },
     ],
   },
@@ -35,6 +35,7 @@ const profileSetting = [
       {
         text: "Order History",
         icon: require("@assets/images/profile-setting/orderHistory.png"),
+        to: "/profile/order-history",
       },
       {
         text: "Voucher",
@@ -48,6 +49,7 @@ const profileSetting = [
       {
         text: "Newsletter Susbcription",
         icon: require("@assets/images/profile-setting/newsletterSubscription.png"),
+        to:"/profile/newsletter-subscription"
       },
       {
         text: "Product Notification",

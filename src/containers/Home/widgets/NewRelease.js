@@ -21,12 +21,12 @@ const NewRelease = () => {
         <NewReleaseTitle>
           <HeadingText className="font-bold pl-3">New Release</HeadingText>
         </NewReleaseTitle>
-        <CustomSlider sliderId = {"newRelease"} sliderInner={"Nslider"}>
+        <CustomSlider sliderId = {"newRelease"} sliderInner={"NsliderIn"}>
           {[...Array(12)].map((slide, index) => {
             return (
-              <Slide>
+              <Slide key={index}>
                 <Card
-                  className=""
+                  className="4xl:w-[175px] 2xl:w-[155px] xl:w-[130px] w-[135px]"
                   productName={"Jack Daniel's Tennessee Whiskey"}
                   price={"29.90"}
                   marketPrice={"32.90"}
