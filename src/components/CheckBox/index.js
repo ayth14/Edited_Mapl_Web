@@ -10,7 +10,7 @@ const CheckBox = ({ title, onChange, errorText, containerStyle, inputStyle, titl
         type='checkbox'
         style={{ ...inputStyle }}
       />
-      <PrimaryText style={{ ...titleStyle }} className={`${titleClassName} ml-3 text-[12px] font-semibold font-sans`}>{title}</PrimaryText>
+      {title && <PrimaryText style={{ ...titleStyle }} className={`${titleClassName} ml-3 text-[12px] font-semibold font-sans`}>{title}</PrimaryText>}
       {errorText && <ErrorText>{`${errorText}`}</ErrorText>}
     </div>
   );

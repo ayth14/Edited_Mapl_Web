@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 import tw from "tailwind-styled-components";
-import { SideBar, TopNavbar, Footer, Button, Basic, CheckBox } from "@components";
+import {
+  SideBar,
+  TopNavbar,
+  Footer,
+  Button,
+  Basic,
+  CheckBox,
+  Input,
+} from "@components";
 import { HiCheckCircle } from "react-icons/hi";
 import UserData from "@components/TopNavbar/widgets/UserData";
 import Profile from "@components/TopNavbar/widgets/Profile";
-import voucher from "../../assets/images/profile-setting/voucher.png";
+import voucher from "@assets/images/profile-setting/voucher.png";
 import AddNote from "./AddNote";
 import paymentMethod from "./paymentMethod";
 
 const Checkout = () => {
+  
   const [active, setActive] = useState("");
-
+  
+  const [checked, setChecked] = useState(false);
+  
   const tipCost = [1, 2, 4, 6, 8, 10];
 
   const paymentSummary = [
@@ -18,10 +29,15 @@ const Checkout = () => {
     { title: "VAT fee (7.7%)", cost: "CHF 3.465" },
     { title: "Delivery fee", cost: "CHF 3.90" },
   ];
+  
   const handleCost = (event) => {
     setActive(event.target.id);
     console.log(event.target.value);
   };
+
+  const handleCheck = (e) => {
+    setChecked(e.target.checked)
+  }
   return (
     <>
       <TopNavbar />
@@ -133,18 +149,56 @@ const Checkout = () => {
             <PaymentSchedule>
               <TitleText>{"Plan Delivery Later"}</TitleText>
               <div className="px-8">
-                <div className="flex flex-row justify-between items-center">
+                <div className="flex flex-row justify-between items-center py-5">
                   <span>{"Schedule Delivery Time"}</span>
-                  <CheckBox/>
+                  <div id="set-time" className={`${checked ? 'flex': 'hidden'} items-center`}>
+                    <Button
+                      title={"Today"}
+                      className={
+                        "bg-black text-white shadow-cartBtn w-auto mx-4 rounded-md py-3 px-7"
+                      }
+                    />
+                    <Button
+                      title={"Tommorrow"}
+                      className={
+                        "bg-white text-black shadow-cartBtn w-auto mr-4 rounded-md py-3 px-7"
+                      }
+                    />
+                    <Input
+                      type="date"
+                      className={"m-0 py-1 px-4"}
+                      style={{margin: "0 0 0 0"}}
+                    />
+                    <Input
+                      type="time"
+                      className={"m-0 py-1 px-4"}
+                      style={{margin: "0 0 0 25px"}}
+                    />
+                  </div>
+                  <CheckBox className={"w-4 h-4"} id="set-time" checked={checked} onChange={(e) => handleCheck(e)}/>
                 </div>
               </div>
             </PaymentSchedule>
+
+            <PlaceOrder>
+              <Basic>
+                "The <TextLink>terms and conditions</TextLink> of MAPL, here are
+                our <TextLink>privacy policy</TextLink> regulations for your
+                information."
+              </Basic>
+              <Button
+                title={"Place Order"}
+                className={
+                  "bg-color51 text-white w-auto inline-block rounded-sm py-2 px-7"
+                }
+              />
+            </PlaceOrder>
           </CheckoutContent>
         </CheckoutContainer>
         <Profile
           openProfile={true}
           userName={"Swissan Kandaswamy"}
-          profileclassname={"xl:absolute xl:top-0 xl:flex hidden"}
+          profileclassname={"xl:sticky xl:top-0 xl:flex hidden"}
         />
       </Container>
       <Footer />
@@ -170,7 +224,7 @@ z-30
 `;
 
 const CheckoutContainer = tw.div`
-xl:w-2/3
+xl:full
 lg:w-full
 w-full
 h-full 
@@ -187,6 +241,7 @@ const CheckoutContent = tw.div`
 flex
 flex-col
 pt-6
+pr-7
 `;
 
 const TipContainer = tw.div`
@@ -195,6 +250,7 @@ flex-col
 bg-white
 shadow-cartBtn
 `;
+
 const PaymentMethod = tw.div`
 flex
 flex-col
@@ -215,6 +271,18 @@ flex-col
 justify-end
 bg-white
 shadow-cartBtn
+mt-4
+`;
+
+const PlaceOrder = tw.div`
+flex
+items-center
+justify-between
+py-4
+`;
+
+const TextLink = tw.button`
+underline
 `;
 
 const TitleText = tw.span`

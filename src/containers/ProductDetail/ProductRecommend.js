@@ -2,7 +2,7 @@ import React from "react";
 import tw from "tailwind-styled-components";
 import { Card, Carousel } from "@components";
 import { SwiperSlide } from "swiper/react";
-import {MdChevronRight} from "react-icons/md";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import styled from "styled-components";
 import jackDaniel from "@assets/images/product-Img/jackDaniel.png";
 import plusIcon from "@assets/images/plusIcon.png";
@@ -78,24 +78,30 @@ const ProductRecommend = () => {
           slidesPerView280={2}
           spaceBetween280={5}
           carouselclass={"w-full h-full"}
-          navigation = {
-            {
-              nextEl : ".info-next",
-              prevEl : ".info-prev",
-            }
-          }
+          navigation={{
+            nextEl: ".info-next",
+            prevEl: ".info-prev",
+            disabledClass: ".swiper-dis",
+          }}
         >
           {productInfo.map((info, index) => {
-            return <SwiperSlide style={{width : "100% !important",}} key={index}>{info.element}</SwiperSlide>;
+            return (
+              <SwiperSlide style={{ width: "100% !important" }} key={index}>
+                {info.element}
+              </SwiperSlide>
+            );
           })}
-          <BtnNxt className="info-next">
-            <MdChevronRight size={48}/>
-          </BtnNxt>
+          <Btn className="info-next swiper-dis">
+            <MdChevronRight size={48} />
+          </Btn>
+          <Btn className="info-prev swiper-dis">
+            <MdChevronLeft size={48} />
+          </Btn>
         </Carousel>
       </ProductContent>
 
       <OtherProduct>
-      <ProductTitle>
+        <ProductTitle>
           <span className="text-2xl font-bold font-raleway">
             {"Other Recommendations"}
           </span>
@@ -117,8 +123,9 @@ const ProductRecommend = () => {
           slidesPerView280={2}
           spaceBetween280={5}
           navigation={{
-            nextEl:".swiper-next",
-            prevEl:".swiper-prev"
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
+            disabledClass: ".swiper-dis",
           }}
         >
           {[...Array(12)].map((index) => {
@@ -138,13 +145,13 @@ const ProductRecommend = () => {
               </SwiperSlide>
             );
           })}
-          <BtnNxt className="swiper-next">
-            <MdChevronRight size={25}/>
-          </BtnNxt>
-          <BtnPrv className="swiper-prev">
-            prev
-          </BtnPrv>
-        </Carousel> 
+          <Btn className="swiper-next">
+            <MdChevronRight size={25} />
+          </Btn>
+          <Btn className="swiper-prev">
+            <MdChevronLeft size={25} />
+          </Btn>
+        </Carousel>
       </OtherProduct>
     </Container>
   );
@@ -171,29 +178,30 @@ px-4
 py-10
 `;
 
-const BtnNxt = styled.button`
-  top: 40%;
-  right: 0;
-  margin-right: 10px;
-  position: absolute;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(50px);
-  border-radius: 100%;
-  box-shadow : 0 3px 6px 0 rgb(0,0,0, 0.16);
-  width: 58px;
-  height: 58px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-  cursor: pointer;
-  z-index: 2;
-  outline: none;
-  border: none;
-`;
-
-const BtnPrv = styled.button`
-display : none;
+const Btn = styled("button")`
+   {
+    top: 40%;
+    right: 0;
+    margin-right: 10px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(50px);
+    border-radius: 100%;
+    box-shadow: 0 3px 6px 0 rgb(0, 0, 0, 0.16);
+    width: 58px;
+    height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    z-index: 2;
+    outline: none;
+    border: none;
+    &:disabled {
+      display: none;
+    }
+  }
 `;
 
 export default ProductRecommend;

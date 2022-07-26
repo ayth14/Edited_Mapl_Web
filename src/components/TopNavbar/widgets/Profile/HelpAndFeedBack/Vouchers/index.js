@@ -63,7 +63,7 @@ const Vouchers = () => {
 const Container = tw.div`
 flex
 flex-col
-xl:w-2/3
+xl:w-full
 lg:w-full
 w-full
 py-7

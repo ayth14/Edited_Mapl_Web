@@ -8,6 +8,7 @@ import restricted from "@assets/images/restricted.png";
 
  const Card = (props) => {
   const {
+    isOn,
     productName,
     price,
     productImg,
@@ -15,15 +16,17 @@ import restricted from "@assets/images/restricted.png";
     weight,
     productRate,
     iconName,
-    deleteIcon,
-    trend,
+    titleName,
+    titleClassName,
+    bottomlabel,
+    trendtag,
+    recommendtag,
+    newtag,
+    CartBtnClick,
     ...rest
   } = props;
   const navigate = useNavigate();
-  const [isOn, setIsOn] = useState(false);
-  const handleClick = () => {
-    setIsOn(!isOn);
-  };
+
   const handlePage = () => {
     navigate("/product");
   };
@@ -39,18 +42,18 @@ import restricted from "@assets/images/restricted.png";
           className={` flex items-center bg-white w-full shadow-cartBtn rounded-[30px] px-2 py-1 ${
             isOn ? "justify-between" : ` `
           }`}
-          onClick={handleClick}
-          icon={isOn ? deleteIcon : iconName}
+          onClick={CartBtnClick}
+          icon={iconName}
           iconStyle={{ width: "auto", height: "14px", padding: "0 0.5rem 0 0" }}
-          title={isOn ? "0" : "Add"}
-          titleclassname={`${isOn ? "pr-0" : "pr-1"}`}
+          title={titleName}
+          titleclassname={titleClassName}
           titleStyle={{ fontSize:"14px", fontWeight: "700", color: "rgb(45, 56, 66)", display:"flex"}}
-          bottomlabel={isOn ? <Icon src={iconName} /> : "to cart"}
+          bottomlabel={bottomlabel}
         />
       </CartButton>
-      <CardTag>
-        {trend && <span>{"Trend"}</span>}
-      </CardTag>
+      {trendtag || recommendtag  || newtag ? <CardTag className={`${trendtag && 'bg-black' || newtag && "bg-red-500" || recommendtag && "bg-yellow-500"}`}>
+         <span>{trendtag || recommendtag || newtag}</span> 
+      </CardTag>: null}
       <CardImg onClick={handlePage}>
         <Img src={productImg} alt="product image" />
       </CardImg>
@@ -96,7 +99,7 @@ absolute
 top-12 
 left-0  
 text-white 
-px-2 py-1 
+px-2 py-[2px] 
 rounded-tr-[5px]
 uppercase
 `;
@@ -156,11 +159,6 @@ text-color139
 const ProductRate = tw.span`
 font-semibold
 text-color139
-`;
-
-const Icon = tw.img`
-w-auto
-h-[14px]
 `;
 
 const Img = tw.img`

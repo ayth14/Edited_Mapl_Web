@@ -3,17 +3,22 @@ import tw from "tailwind-styled-components";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 const CustomSlider = (props) => {
   const { children, sliderId, sliderInner } = props;
+  
   const [sliderlength, setSliderLength] = useState(0)
+  
+  
   const nextSlide = () => {
     let slider = document.getElementById(`${sliderId}`);
     slider.scrollLeft = slider.scrollLeft + 250;
     setSliderLength(slider.scrollLeft)
+    console.log(sliderlength, 'nxt');
+    
   };
-  console.log(sliderlength);
   const prevSlide = () => {
     let slider = document.getElementById(`${sliderId}`);
     slider.scrollLeft = slider.scrollLeft - 250;
     setSliderLength(slider.scrollLeft)
+    console.log(sliderlength, 'prv');
   };
   
   return (
@@ -24,7 +29,11 @@ const CustomSlider = (props) => {
           className={"flex self-center justify-center pr-[2px]"}
         />
       </SliderButtonLeft>
-      <ProductSlider id={`${sliderId}`}><div id={`${sliderInner}`}>{children}</div></ProductSlider>
+      <ProductSlider id={`${sliderId}`}>
+        <div id={`${sliderInner}`}>
+          {children}
+        </div>
+      </ProductSlider>
       <SliderButtonRight onClick={nextSlide}  className={`${sliderlength === sliderlength ? 'flex' : 'hidden'}`}>
         <MdChevronRight
           size={22}
@@ -36,12 +45,15 @@ const CustomSlider = (props) => {
 };
 
 const ProductSlider = tw.div`
-w-full
+w-[48vw]
 h-full
 whitespace-nowrap
 overflow-x-scroll
 scrollbar-none
 scroll-smooth
+flex
+justify-center
+items-center
 `;
 
 const SliderButtonLeft = tw.div`

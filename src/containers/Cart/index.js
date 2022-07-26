@@ -71,7 +71,7 @@ const Cart = () => {
         <Profile
           openProfile={true}
           userName={"Swissan Kandaswamy"}
-          profileclassname={"xl:absolute xl:top-0 xl:flex hidden"}
+          profileclassname={"xl:sticky xl:top-0 xl:flex hidden"}
         />
       </Container>
       <Footer />

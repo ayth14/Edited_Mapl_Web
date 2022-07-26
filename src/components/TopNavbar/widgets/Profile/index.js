@@ -80,7 +80,7 @@ shadow-cartBtn
 w-[280px]
 xl:fixed
 xl:top-28
-xl:h-screen
+xl:h-auto
 top-36
 h-[40vh]
 absolute

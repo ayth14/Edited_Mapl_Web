@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import tw from "tailwind-styled-components";
 import { Card, HeadingText, Container, CustomSlider } from "@components";
 import { SwiperSlide } from "swiper/react";
@@ -8,6 +8,12 @@ import plusIcon from "@assets/images/plusIcon.png";
 import deleteIcon from "@assets/images/deleteIcon.png";
 
 const NewRelease = () => {
+  const [isOn, setIsOn] = useState(false);
+
+  const handleClick = () => {
+    setIsOn(!isOn);
+  };
+
   return (
     <Container className="md:flex-col xl:flex-row lg:flex-row flex-col">
       <NewReleaseBanner>
@@ -21,20 +27,25 @@ const NewRelease = () => {
         <NewReleaseTitle>
           <HeadingText className="font-bold pl-3">New Release</HeadingText>
         </NewReleaseTitle>
-        <CustomSlider sliderId = {"newRelease"} sliderInner={"NsliderIn"}>
+        <CustomSlider sliderId={"newRelease"} sliderInner={"NsliderIn"}>
           {[...Array(12)].map((slide, index) => {
             return (
               <Slide key={index}>
                 <Card
-                  className="4xl:w-[175px] 2xl:w-[155px] xl:w-[130px] w-[135px]"
+                  className="4xl:w-[170px] 2xl:w-[155px] xl:w-[130px] w-[135px]"
                   productName={"Jack Daniel's Tennessee Whiskey"}
                   price={"29.90"}
                   marketPrice={"32.90"}
                   weight={"70cl"}
                   productRate={"42.70/l"}
                   productImg={jackDaniel}
-                  iconName={plusIcon}
-                  deleteIcon={deleteIcon}
+                  newtag={"new"}
+                  CartBtnClick={handleClick}
+                  isOn={isOn}
+                  titleClassName={`${isOn ? "pr-0" : "pr-1"}`}
+                  iconName={isOn ? deleteIcon : plusIcon}
+                  titleName={isOn ? "1" : "Add"}
+                  bottomlabel={isOn ? <Icon src={plusIcon} /> : "to cart"}
                 />
               </Slide>
             );
@@ -74,6 +85,11 @@ const BannerContainer = tw.div`
 w-full 
 h-full 
 flex
+`;
+
+const Icon = tw.img`
+w-auto
+h-[14px]
 `;
 
 const Slide = tw.div`

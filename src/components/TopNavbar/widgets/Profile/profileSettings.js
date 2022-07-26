@@ -40,6 +40,7 @@ const profileSetting = [
       {
         text: "Voucher",
         icon: require("@assets/images/profile-setting/voucher.png"),
+        to:"/profile/vouchers"
       },
     ],
   },
@@ -54,6 +55,7 @@ const profileSetting = [
       {
         text: "Product Notification",
         icon: require("@assets/images/profile-setting/productNotification.png"),
+        to:"/profile/product-notification"
       },
     ],
   },

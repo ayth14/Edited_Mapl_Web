@@ -30,7 +30,7 @@
       to: '/products',
     },
     {
-      icon: require('@assets/images/categoriesIcon/meatAndFish.png'),
+      icon: require('@assets/images/categoriesIcon/meatAndfish.png'),
       name: 'Meat & Fish',
       to: '/products',
     },

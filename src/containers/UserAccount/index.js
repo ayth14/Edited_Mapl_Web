@@ -27,12 +27,12 @@ const UserAccount = () => {
               />
             ))}
           </Routes>
+        </UserContent>
           <Profile
             openProfile={true}
             userName={"Swissan Kandaswamy"}
-            profileclassname={"xl:absolute xl:top-0 xl:flex hidden"}
+            profileclassname={"xl:sticky xl:h-screen xl:w-[330px] xl:top-0 xl:flex hidden"}
           />
-        </UserContent>
       </Container>
       <Footer />
     </>
