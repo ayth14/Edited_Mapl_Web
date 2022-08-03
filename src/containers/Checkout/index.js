@@ -11,10 +11,11 @@ import {
 } from "@components";
 import { HiCheckCircle } from "react-icons/hi";
 import UserData from "@components/TopNavbar/widgets/UserData";
-import Profile from "@components/TopNavbar/widgets/Profile";
+import { Profile } from "@containers";
 import voucher from "@assets/images/profile-setting/voucher.png";
 import AddNote from "./AddNote";
 import paymentMethod from "./paymentMethod";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   
@@ -65,7 +66,7 @@ const Checkout = () => {
                 title={"Bussiness Billing"}
                 titleclassname={"max-w-full"}
                 className={
-                  "bg-white text-black shadow-cartBtn w-auto mx-2 mr-4 rounded-md py-3 px-7"
+                  "bg-white text-black shadow-cartBtn w-auto mx-2 mr-2 rounded-md py-3 px-7"
                 }
               />
             </div>
@@ -119,18 +120,13 @@ const Checkout = () => {
                           {"Choose your Voucher Code"}
                         </span>
                       </div>
-                      <label
+                      <Link
                         htmlFor="chooseFile"
                         className="bg-white border rounded-sm border-color207 font-semibold py-1 px-4"
+                        to={'/profile/helpAndFeedBack/vouchers'}
                       >
                         {"Choose"}
-                      </label>
-                      <input
-                        type="file"
-                        name=""
-                        id="chooseFile"
-                        className="hidden"
-                      />
+                      </Link>
                     </div>
                     {paymentSummary.map((bill) => (
                       <div className="flex flex-row items-center justify-between py-3 border-b border-b2bButton">
@@ -151,7 +147,7 @@ const Checkout = () => {
               <div className="px-8">
                 <div className="flex flex-row justify-between items-center py-5">
                   <span>{"Schedule Delivery Time"}</span>
-                  <div id="set-time" className={`${checked ? 'flex': 'hidden'} items-center`}>
+                  <div id="set-time" className={`${checked ? 'flex': 'hidden'} self-center`}>
                     <Button
                       title={"Today"}
                       className={
@@ -198,7 +194,7 @@ const Checkout = () => {
         <Profile
           openProfile={true}
           userName={"Swissan Kandaswamy"}
-          profileclassname={"xl:sticky xl:top-0 xl:flex hidden"}
+          profileclassname={"xl:absolute xl:top-0 xl:flex hidden"}
         />
       </Container>
       <Footer />
@@ -224,14 +220,14 @@ z-30
 `;
 
 const CheckoutContainer = tw.div`
-xl:full
+xl:w-2/3
 lg:w-full
 w-full
 h-full 
 flex
 flex-col
 relative
-px-4
+px-6
 xl:py-5
 lg:py-7
 py-5
@@ -241,7 +237,7 @@ const CheckoutContent = tw.div`
 flex
 flex-col
 pt-6
-pr-7
+pr-3
 `;
 
 const TipContainer = tw.div`

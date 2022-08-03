@@ -210,13 +210,13 @@ py-4
 const WishList = tw.div`
 absolute 
 top-0 
-right-5
+right-14
 `;
 
 const Storage = tw.div`
 absolute 
 bottom-0 
-right-5
+right-14
 `;
 
 const ProductExpiry = tw.div`

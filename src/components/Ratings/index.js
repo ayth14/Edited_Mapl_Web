@@ -93,7 +93,7 @@ const Ratings = (props) => {
       })}
     </Box>
     {label && (
-        <Link to={"/home"} className={"ml-2"}>
+        <Link to={"/home"} className={"ml-2 underline"}>
           <Basic>{label}</Basic>
         </Link>
       )}

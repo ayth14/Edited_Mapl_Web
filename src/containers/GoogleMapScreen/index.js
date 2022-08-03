@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import tw from "tailwind-styled-components";
 import { GoogleMap } from "@components";
 import { BsArrowLeft } from "react-icons/bs";
-import ConfirmAddressModal from "./widgets/confirmAddressModal";
 import InsertAddressModal from "./widgets/insertAddressModal";
-import LocationUnavailableModal from "./widgets/locationUnavailableModal"
 import { useNavigate } from "react-router-dom";
 import Autocomplete from "react-google-autocomplete";
 import Config from "../../config";
@@ -14,7 +12,7 @@ const GoogleMapScreen = () => {
     isInsertAddressModal: false,
     isLocationUnavailabelModal: false
   });
-  const { isInsertAddressModal, isLocationUnavailabelModal } = state;
+  const { isInsertAddressModal } = state;
 
   const navigate = useNavigate();
 
@@ -39,7 +37,7 @@ const GoogleMapScreen = () => {
             />
           </ButtonContainer>
           <Autocomplete
-            className="sm:w-[50vw] lg:w-[30vw] px-4 flex rounded-sm focus:outline-none shadow-xl hover:shadow-lg hover:shadow-neutral-400 opacity-90"
+            className="sm:w-[50vw] lg:w-[40vw] px-4 flex rounded-sm focus:outline-none shadow-xl hover:shadow-lg hover:shadow-neutral-400 opacity-90"
             apiKey={Config.GOOGLE_MAP_API_KEY}
             onPlaceSelected={(place) => {
               console.log(place);

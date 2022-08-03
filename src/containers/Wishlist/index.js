@@ -5,17 +5,16 @@ import wishlistEmpty from "@assets/images/wishlistEmpty.png";
 import { Basic } from "@components";
 import { useNavigate } from "react-router-dom";
 import UserData from "@components/TopNavbar/widgets/UserData";
-import Profile from "@components/TopNavbar/widgets/Profile";
+import { Profile } from "@containers";
 import wishList from "./wishList";
 import WishListProduct from "./WishListProduct";
 
 const Wishlist = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-  
-    const handleCart = () => {
-    navigate('/cart')
-  }
+  const handleCart = () => {
+    navigate("/cart");
+  };
   return (
     <>
       <TopNavbar />
@@ -27,12 +26,12 @@ const Wishlist = () => {
         <WishlistContainer>
           <Basic
             style={{ fontWeight: 700 }}
-            className={"xl:text-3xl lg:text-2xl md:text-xl text-lg py-3"}
+            className={"xl:text-2xl lg:text-xl md:text-lg text-base mb-6"}
           >
             {"Wishlist"}
           </Basic>
           <WishlistContent>
-          {wishList?.length > 0 ? (
+            {wishList?.length > 0 ? (
               <>
                 <WishListProduct />
                 <div className="flex justify-end pt-8">
@@ -65,7 +64,7 @@ const Wishlist = () => {
         <Profile
           openProfile={true}
           userName={"Swissan Kandaswamy"}
-          profileclassname={"xl:sticky xl:top-0 xl:flex hidden"}
+          profileclassname={"xl:sticky xl:top-0 xl:right-0 xl:flex hidden"}
         />
       </Container>
       <Footer />
@@ -92,15 +91,17 @@ z-30
 `;
 
 const WishlistContainer = tw.div`
-xl:w-2/3
+4xl:w-[70%]
+2xl:w-2/3
+xl:w-[70%]
 lg:w-full
 w-full
 h-full 
 flex
 flex-col
 relative
-p-7
-xl:py-3 
+pl-5 pr-7
+xl:py-6 
 lg:py-7
 `;
 
@@ -108,12 +109,12 @@ const WishlistContent = tw.div`
 flex
 flex-col
 justify-end
-mt-6
 `;
 
 const TitleText = tw.span`
 font-bold 
 text-3xl 
+py-4
 `;
 
 export default Wishlist;

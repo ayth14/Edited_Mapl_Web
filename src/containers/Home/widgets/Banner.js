@@ -19,7 +19,6 @@ flex
 w-full
 h-full
 my-8
-bg-green
 xl:relative
 lg:sticky
 lg:mt-4

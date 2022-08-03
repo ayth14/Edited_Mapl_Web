@@ -16,7 +16,15 @@ import CategoriesList from "@components/SideBarMenu/categoriesList";
 import "./filterProduct.css";
 
 const ProductContent = () => {
-  const [active, setActive] = useState("");
+  const [state, setState] = useState({
+    Active: "",
+    btnActive: "",
+  });
+
+  const { Active, btnActive } = state;
+
+  const [isOn, setIsOn] = useState();
+
   const varietyList = [
     "Fruits",
     "vegetables",
@@ -34,18 +42,24 @@ const ProductContent = () => {
     "Salad",
     "vegetables",
   ];
+
   const toggleOption = [
     { label: "New", checked: true },
     { label: "Sales", checked: false },
     { label: "Trend", checked: false },
     { label: "From Switzerland", checked: false },
   ];
-  
+
   const sorting = ["CHF", "CHF/100g", "A-Z"];
-  
-  const handleClick = (event) => {
-    setActive(event.target.id);
+
+  const handleClick = (e) => {
+    setState((prev) => ({ ...prev, Active: [e.target.id] }));
   };
+
+  const handleBtn = (item) => {
+    setIsOn(item);
+  };
+
   return (
     <>
       <Container className="mx-2 my-6 relative lg:overflow-visible  overflow-x-auto scrollbar-none lg:p-0 py-4">
@@ -88,7 +102,7 @@ const ProductContent = () => {
               return (
                 <List>
                   <ListElement
-                    $active={active === index.toString()}
+                    $active={Active === index.toString()}
                     key={index}
                     id={index.toString()}
                     onClick={handleClick}
@@ -122,16 +136,21 @@ const ProductContent = () => {
         {[...Array(12)].map((card, index) => {
           return (
             <Card
+              key={index}
+              id={index}
               className="pb-2 w-auto"
               productName={"Jack Daniel's Tennessee Whiskey"}
-              iconName={plusIcon}
-              deleteIcon={deleteIcon}
               price={"29.90"}
               marketPrice={"32.90"}
               weight={"70cl"}
               productRate={"42.70/l"}
               productImg={jackDaniel}
-              key={index}
+              CartBtnClick={() => handleBtn(index)}
+              isOn={isOn}
+              titleName={isOn === index ? "1"  : "Add"}
+              titleClassName={`${isOn === index ? "pr-0" : "pr-1"}`}
+              iconName={isOn === index ? deleteIcon : plusIcon}
+              bottomlabel={isOn === index ? <Icon src={plusIcon} /> : "to cart"}
             />
           );
         })}
@@ -146,6 +165,12 @@ items-center
 w-[22px]
 h-[22px]
 `;
+
+const Icon = tw.img`
+w-auto
+h-[14px]
+`;
+
 const SliderContainer = tw.div`
 flex 
 flex-col 
@@ -214,4 +239,5 @@ justify-end
 lg:p-0
 pt-4
 `;
+
 export default ProductContent;

@@ -5,7 +5,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import { Pagination, Navigation, Autoplay } from "swiper";
-import styled from "styled-components";
 
 const Carousel = (props) => {
   const {
@@ -35,11 +34,12 @@ const Carousel = (props) => {
       spaceBetween={5}
       slidesPerGroup={slidesPerGroup}
       loop={false}
+      freeMode={true}
       pagination={false}
       navigation={navigation}
       autoplay={autoplay}
       modules={[Pagination, Navigation, Autoplay]}
-      className={` max-h-fit ${carouselclass} `}
+      className={` max-h-fit ${carouselclass}`}
       breakpoints={{
         280: {
           slidesPerView: slidesPerView280,

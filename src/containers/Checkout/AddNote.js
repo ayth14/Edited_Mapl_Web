@@ -19,7 +19,7 @@ const AddNote = () => {
             key={idx}
             title={option}
             titleClassName={"ml-1 font-normal"}
-            className={"border border-black w-4 h-4"}
+            className={"border border-black w-[15px] h-[15px]"}
             containerStyle={
               "items-center first:pl-8 first:pr-0 px-[10px] last:pr-8 last:pl-0"
             }

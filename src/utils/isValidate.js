@@ -20,6 +20,16 @@ export function isValidNumber(phone_num) {
   return pn.test(phone_num);
 }
 
+export function isValidNo(number) {
+  var na = /^[0-9]{1,2}$/;
+  return na.test(number);
+}
+
+export function isValidPostcode(number) {
+  var pc = /^[0-9]{1,4}$/;
+  return pc.test(number);
+}
+
 export function isValidUrl(website_url) {
   var ur = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
   return ur.test(website_url);

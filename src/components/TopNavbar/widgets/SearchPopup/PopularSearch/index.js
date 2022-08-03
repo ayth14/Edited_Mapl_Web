@@ -15,9 +15,8 @@ const PopularSearch = (props) => {
         <SearchList>
             {searchCategory.map((items, index) => {
               return (
-                <div className="mr-5 my-5 ml-0">
+                <div key={index} className="mr-5 my-5 ml-0">
                 <a
-                key={index}
                   href="/"
                   className="px-4 py-3 rounded-md bg-color239"
                 >

@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import user_routes from "./user_routes";
 import { Route, Routes } from "react-router";
+import { useLocation } from "react-router-dom";
 import tw from "tailwind-styled-components";
 import { SideBar, TopNavbar, Footer } from "@components";
-import { Profile } from "@components/TopNavbar/widgets";
+import { Profile } from "@containers";
 import UserData from "@components/TopNavbar/widgets/UserData";
 
 const UserAccount = () => {
   const [openProfile, setOpenProfile] = useState(false);
+  const location = useLocation();
   return (
     <>
       <TopNavbar />
@@ -31,7 +33,7 @@ const UserAccount = () => {
           <Profile
             openProfile={true}
             userName={"Swissan Kandaswamy"}
-            profileclassname={"xl:sticky xl:h-screen xl:w-[330px] xl:top-0 xl:flex hidden"}
+            profileclassname={location.pathname === '/profile/annoucement/productNotification/product-detail' ? 'hidden' : `xl:sticky xl:h-screen xl:w-[330px] xl:top-0 xl:flex hidden` }
           />
       </Container>
       <Footer />

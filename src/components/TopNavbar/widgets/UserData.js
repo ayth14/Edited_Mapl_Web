@@ -5,7 +5,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { FiShoppingCart } from "react-icons/fi";
 import SwitchOption from "./SwitchOption";
-import Profile from "./Profile";
+import Profile from "../../../containers/Profile";
 import { useNavigate } from "react-router-dom";
 
 const UserData = (props) => {

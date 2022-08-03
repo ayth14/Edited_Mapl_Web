@@ -5,6 +5,7 @@ const theme = {
     blue: 'rgb(0,93,255)',
     fbColor: 'rgb(23,120,242)',
     instaColor: 'rgb(240,0,117)',
+    logoColor: "rgb(239 39 44)",
     twitterColor: 'rgb(29,161,242)',
     green: 'rgb(75,165,47)',
     gray: [

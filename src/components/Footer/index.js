@@ -54,7 +54,7 @@ const Footer = () => {
               <LinksLogo src={appsStoreButton} alt="" />
             </Links>
           </div>
-          <div className="flex self-center">
+          <div className="flex justify-center md:justify-start items-center">
             <p className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
               © 2022{" "}
               <a
@@ -102,7 +102,7 @@ const LinksLogo = tw.img`
  sm:w-full
  `;
 
-const Heading = tw.text`
+const Heading = tw.span`
 mb-4 
 text-[14px]
 font-semibold   

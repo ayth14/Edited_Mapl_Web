@@ -3,7 +3,7 @@ import tw from "tailwind-styled-components";
 import { SideBar, TopNavbar, Footer, Basic, Button } from "@components";
 import wishlistEmpty from "@assets/images/wishlistEmpty.png";
 import UserData from "@components/TopNavbar/widgets/UserData";
-import Profile from "@components/TopNavbar/widgets/Profile";
+import { Profile } from "@containers";
 import CartProductList from "./CartProductList";
 import cartList from "./cartList";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ const Cart = () => {
         <CartContainer>
           <Basic
             style={{ fontWeight: 700 }}
-            className={"xl:text-3xl lg:text-2xl md:text-xl text-lg py-6"}
+            className={"xl:text-2xl lg:text-2xl md:text-xl text-lg my-3"}
           >
             {"Cart"}
           </Basic>
@@ -71,7 +71,7 @@ const Cart = () => {
         <Profile
           openProfile={true}
           userName={"Swissan Kandaswamy"}
-          profileclassname={"xl:sticky xl:top-0 xl:flex hidden"}
+          profileclassname={"xl:sticky xl:top-0 xl:right-0 xl:flex hidden"}
         />
       </Container>
       <Footer />
@@ -98,6 +98,7 @@ z-30
 `;
 
 const CartContainer = tw.div`
+4xl:w-[70%]
 xl:w-2/3
 lg:w-full
 w-full

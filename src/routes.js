@@ -10,6 +10,7 @@ const ErrorPage = lazy(() => import("@containers/ErrorPage"));
 const GoogleMap = lazy(() => import("@containers/GoogleMapScreen"));
 const Products = lazy(() => import("@containers/Products"));
 const ProductDetail = lazy(() => import("@containers/ProductDetail"));
+const ProductDetailB2B = lazy(() => import("./containers/ProductDetail/ProductDetailB2B"));
 const UserAccount = lazy(() => import("@containers/UserAccount"));
 const Wishlist = lazy(() => import("@containers/Wishlist"));
 const Cart = lazy(() => import("@containers/Cart"));
@@ -58,7 +59,7 @@ const routes = [
   },
   { exact: true, 
     path: "/products", 
-    name: "ErrorPage", 
+    name: "products", 
     element: <Products /> 
   },
   {
@@ -66,6 +67,16 @@ const routes = [
     path: "/product",
     name: "ErrorPage",
     element: <ProductDetail />,
+  },
+  { exact: true, 
+    path: "/product-detail", 
+    name: "product-detail", 
+    element: <ProductDetail/>
+  },
+  { exact: true, 
+    path: "/product-detailb2b", 
+    name: "product-detailb2b", 
+    element: <ProductDetailB2B/>
   },
   { exact: true, 
     path: "/googleMap", 

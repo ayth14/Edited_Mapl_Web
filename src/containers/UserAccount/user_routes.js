@@ -1,71 +1,36 @@
 import React, { lazy } from "react";
 
-const Vouchers = lazy(() =>
-  import("@components/TopNavbar/widgets/Profile/HelpAndFeedBack/Vouchers")
-);
-const AccountSettings = lazy(() =>
-  import("@components/TopNavbar/widgets/Profile/UserSettings/AccountSettings")
-);
-const ChangePassword = lazy(() =>
-  import("@components/TopNavbar/widgets/Profile/UserSettings/ChangePassword")
-);
-const Address = lazy(() =>
-  import("../../components/TopNavbar/widgets/Profile/UserSettings/Address")
-);
-const InvoiceDetails = lazy(() =>
-  import("@components/TopNavbar/widgets/Profile/UserSettings/InvoiceDetails")
-);
-
-const OrderHistory = lazy(()=>
-import("@components/TopNavbar/widgets/Profile/HelpAndFeedBack/OrderHistory")
-)
-
-const NewsLetterSubscription = lazy(()=>
-import('@components/TopNavbar/widgets/Profile/Annoucement/NewsLetterSubscription')
-)
-
-const ProductNotification = lazy(()=>
-import('@components/TopNavbar/widgets/Profile/Annoucement/ProductNotification')
-)
-
-const AddNewAddress = lazy(()=>
-import('@components/TopNavbar/widgets/Profile/UserSettings/Address/AddNewAddress'))
-
-const EditAdress = lazy(()=>
-import('@components/TopNavbar/widgets/Profile/UserSettings/Address/EditAdress')
-)
-
-const ProductDetail = lazy(() =>
-  import(
-    "@components/TopNavbar/widgets/Profile/Annoucement/ProductNotification/ProductDetail"
-  )
-);
-
-
+const AccountSettings = lazy(() => import("../Settings/AccountSettings"));
+const ChangePassword = lazy(() => import("../Settings/ChangePassword"));
+const Address = lazy(() => import("../Settings/Address"));
+const InvoiceDetails = lazy(() => import("../Settings/InvoiceDetails"));
+const CustomerSupport = lazy(() => import("../HelpAndFeedBack/CustomerSupport"));
+const Faq = lazy(() => import("../HelpAndFeedBack/Faq"));
+const OrderHistory = lazy(() => import("../HelpAndFeedBack/OrderHistory"));
+const Vouchers = lazy(() => import("../HelpAndFeedBack/Vouchers"));
+const NewsLetterSubscription = lazy(() => import("../Annoucement/NewsLetterSubscription"));
+const ProductNotification = lazy(() => import("../Annoucement/ProductNotification"));
+const AddNewAddress = lazy(() => import("../Settings/Address/AddNewAddress"));
+const EditAdress = lazy(() => import("../Settings/Address/EditAdress"));
+const ProductDetail = lazy(() =>import("../Annoucement/ProductNotification/ProductDetail"));
 
 const user_routes = [
   {
     exact: true,
-    path: "vouchers",
-    name: "vouchers",
-    element: <Vouchers />,
-  },
-  {
-    exact: true,
-    path: "account-settings",
-    name: "account-settings",
+    path: "settings/account-settings",
+    name: "settings/account-settings",
     element: <AccountSettings />,
   },
   {
     exact: true,
-    path: "change-password",
-    name: "change-password",
+    path: "settings/change-password",
+    name: "settings/change-password",
     element: <ChangePassword />,
   },
   {
     exact: true,
-    path: "address",
-    name: "address",
+    path: "settings/address",
+    name: "settings/address",
     element: <Address />,
   },
   {
@@ -82,32 +47,50 @@ const user_routes = [
   },
   {
     exact: true,
-    path: "invoice-details",
-    name: "invoice-details",
+    path: "settings/invoice-details",
+    name: "settings/invoice-details",
     element: <InvoiceDetails />,
   },
   {
     exact: true,
-    path: "order-history",
-    name: "order-history",
+    path: "helpAndFeedBack/customer-support",
+    name: "helpAndFeedBack/customer-support",
+    element: <CustomerSupport />,
+  },
+  {
+    exact: true,
+    path: "helpAndFeedBack/faq",
+    name: "helpAndFeedBack/faq",
+    element: <Faq />,
+  },
+  {
+    exact: true,
+    path: "helpAndFeedBack/order-history",
+    name: "helpAndFeedBack/order-history",
     element: <OrderHistory />,
   },
   {
     exact: true,
-    path: "newsletter-subscription",
-    name: "newsletter-subscription",
+    path: "helpAndFeedBack/vouchers",
+    name: "helpAndFeedBack/vouchers",
+    element: <Vouchers />,
+  },
+  {
+    exact: true,
+    path: "annoucement/newsletter-subscription",
+    name: "annoucement/newsletter-subscription",
     element: <NewsLetterSubscription />,
   },
   {
     exact: true,
-    path: "product-notification",
-    name: "product-notification",
+    path: "annoucement/product-notification",
+    name: "annoucement/product-notification",
     element: <ProductNotification />,
   },
   {
     exact: true,
-    path: "/product-detail",
-    name: "product-detail",
+    path: "annoucement/productNotification/product-detail",
+    name: "annoucement/productNotification/product-detail",
     element: <ProductDetail />,
   },
 ];

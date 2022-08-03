@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import tw from "tailwind-styled-components";
+import { useNavigate } from "react-router-dom";
 import { HeadingText, SecondaryText, AuthContainer } from "@components";
 import logo from "@assets/images/mapl1.png";
 import checkImage from "@assets/images/checkImg.png";
 
 const ConfirmBusinessRegistration = () => {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate("/home");
+    }, 6000);
+  });
 
   return (
     <AuthContainer>

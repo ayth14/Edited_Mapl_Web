@@ -18,6 +18,7 @@ import theme from "@theme";
 import { en } from "@i18n";
 import { isEmpty, isValidEmail, isValidPassword, isValidNumber } from "@utils";
 import { toast } from "react-toastify";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 
 const Login = () => {
   const [state, setState] = useState({
@@ -26,8 +27,9 @@ const Login = () => {
     phone_num: "",
     code: "",
     signInWithMobile: false,
+    showPassword: false
   });
-  const { email, password, phone_num, code, signInWithMobile } = state;
+  const { email, password, phone_num, code, signInWithMobile,showPassword } = state;
 
   const navigate = useNavigate();
 
@@ -71,6 +73,10 @@ const Login = () => {
     }
   };
 
+  const handleClickShowPassword = () =>{ 
+    setState(prev => ({ ...prev, showPassword: !showPassword}))
+  }
+
   return (
     <AuthContainer>
       <LoginContainer>
@@ -94,10 +100,12 @@ const Login = () => {
               name={signInWithMobile ? "code" : "password"}
               id={signInWithMobile ? "code" : "password"}
               value={signInWithMobile ? code : password}
-              type={signInWithMobile ? "text" : "password"}
+              type={showPassword ? "text" : "password"}
               title={signInWithMobile ? "Enter code" : "Password"}
               placeholder={signInWithMobile ? "Code" : "Password"}
               onChange={onHandleClick}
+              hideAndShowEyeIcon={showPassword ? <EyeIcon className="w-3 h-3"/> : <EyeOffIcon className="w-3 h-3"/>}
+              hideAndShowPasswordOnClick={handleClickShowPassword}
             />
           </div>
           <Button

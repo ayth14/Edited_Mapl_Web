@@ -14,9 +14,9 @@ const WishListProduct = () => {
       <table className="table-auto">
         <thead className="border-b border-b2bButton text-left">
           <tr>
-            <th className="max-w-fit" colSpan={2}>
+            <th className="max-w-fit">
               <div className="flex items-center">
-                Product
+                <span>Product</span> 
                 <FaSort />
               </div>
             </th>
@@ -28,30 +28,26 @@ const WishListProduct = () => {
         <tbody>
           {wishList.map((product, idx) => (
             <tr key={idx} className="border-t border-b2bButton text-left ">
-              <td className="py-6">
-                <div className="flex gap-x-2 justify-center items-center">
-                  <CheckBox className={"w-4 h-4"}/>
+              <td className="py-6 w-[28vw]">
+                <div className="flex gap-x-2 justify-start items-center">
+                  <CheckBox className={"w-3 h-3"}/>
                 <div className="bg-color249 flex justify-center w-[69px] h-[69px] py-2">
                   <img src={product.img} alt="" />
                 </div>
+                <span className="font-semibold">
+                  {product.productName}
+                </span>
                 </div>
               </td>
-              <td className="">
-              <span className="font-semibold">
-                  {product.productName}
-                </span> 
-              </td>
               <td>
-                <Availabilty>
-                  <Basic>{product.availabilty}</Basic> 
-                </Availabilty>
+                  <Basic className={"border border-color139 px-2 py-1 rounded-sm"}>{product.availabilty}</Basic> 
               </td>
-              <td>
+              <td className="mr-7">
                 <Basic style={{ fontWeight: 700 }}>
                   {"CHF"} {product.price}
                 </Basic>
               </td>
-              <td className="w-[154px]">
+              <td className="w-[10vw]">
                 <div className={` ${product.quantity > 0 ? `w-full` : ``}`}>
                   <Button
                     className={` flex items-center bg-white w-full shadow-cartBtn rounded-[30px] p-2 ${
@@ -77,7 +73,7 @@ const WishListProduct = () => {
                   />
                 </div>
               </td>
-              <td className="text-center">
+              <td className="text-center pl-3">
                 <button>
                   <IoClose />
                 </button>
@@ -95,8 +91,9 @@ border
 border-color139 
 py-1 
 px-2 
-mr-5
+mr-7
 rounded-sm
+flex
 `;
 
 const Icon = tw.img`

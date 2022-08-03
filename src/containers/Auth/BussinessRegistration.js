@@ -22,8 +22,11 @@ import {
   isValidPassword,
   isValidEmail,
   isValidUrl,
+  isValidNo,
+  isValidPostcode,
   isValidUserId,
 } from "@utils";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 
 const BussinessRegistration = () => {
   const [state, setState] = useState({
@@ -33,6 +36,8 @@ const BussinessRegistration = () => {
     phone_num: "",
     password: "",
     confirmPassword: "",
+    showPassword: false,
+    showConfirmPassword: false,
     company: "",
     url: "",
     uid: "",
@@ -57,6 +62,8 @@ const BussinessRegistration = () => {
     phone_num,
     password,
     confirmPassword,
+    showPassword,
+    showConfirmPassword,
     company,
     url,
     uid,
@@ -133,6 +140,14 @@ const BussinessRegistration = () => {
     }
   };
 
+  const handleClickShowPassword = () =>{ 
+    setState(prev => ({ ...prev, showPassword: !showPassword}))
+  }
+
+  const handleClickShowConfirmPassword = () => {
+    setState(prev => ({...prev , showConfirmPassword: !showConfirmPassword}))
+  }
+
   const goBackByMobileOtpModal = () => {
     if (isMobileModalValue.trim().length == 0) {
       alert(en.errors.otpValidate);
@@ -188,9 +203,9 @@ const BussinessRegistration = () => {
       toast.error(en.errors.validUid);
     } else if (street && !isValidName(street.trim())) {
       toast.error(en.errors.validStreet);
-    } else if (number && !isValidNumber(number.trim())) {
+    } else if (number && !isValidNo(number.trim())) {
       toast.error(en.errors.validNumber);
-    } else if (postCode && !isValidNumber(postCode.trim())) {
+    } else if (postCode && !isValidPostcode(postCode.trim())) {
       toast.error(en.errors.validPostCode);
     } else if (city && !isValidName(city.trim())) {
       toast.error(en.errors.validCity);
@@ -291,6 +306,7 @@ const BussinessRegistration = () => {
                 phone_num ? toggleMobileVerificationModal : null
               }
               placeholder={"+14 79 774 53 76"}
+              maxLength={13}
               inputicon={switzerlandLogo}
               onChange={onChangeMobileNum}
               bottomlabel={
@@ -310,18 +326,22 @@ const BussinessRegistration = () => {
           <Input
             name="password"
             value={password}
-            type="password"
+            type={showPassword ? "text" : "password"}
             title={"Password"}
             placeholder={"Password"}
             onChange={onChangeHandler}
+            hideAndShowEyeIcon={showPassword ? <EyeIcon className="w-3 h-3"/> : <EyeOffIcon className="w-3 h-3"/>}
+            hideAndShowPasswordOnClick={handleClickShowPassword}
           />
           <Input
             name="confirmPassword"
             value={confirmPassword}
-            type="password"
+            type={showConfirmPassword ? "text" : "password"}
             title={"Confirm Password"}
             placeholder={"Confirm Password"}
             onChange={onChangeHandler}
+            hideAndShowEyeIcon={showConfirmPassword ? <EyeIcon className="w-3 h-3"/> : <EyeOffIcon className="w-3 h-3"/>}
+            hideAndShowPasswordOnClick={handleClickShowConfirmPassword}
           />
           <div className="grid lg:gap-4 lg:grid-cols-2 ">
             <Input
@@ -361,9 +381,10 @@ const BussinessRegistration = () => {
             <Input
               name="number"
               value={number}
-              type="number"
+              type="text"
               title={"No."}
               placeholder={"52"}
+              maxLength={2}
               onChange={onChangeHandler}
             />
           </div>
@@ -374,6 +395,7 @@ const BussinessRegistration = () => {
               type="text"
               title={"Postcode"}
               placeholder={"8134"}
+              maxLength={4}
               onChange={onChangeHandler}
             />
             <Input

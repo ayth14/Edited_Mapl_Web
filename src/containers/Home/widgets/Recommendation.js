@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import tw from "tailwind-styled-components";
-import { Card, Container, HeadingText, CustomSlider } from "@components";
+import { Card, Container, HeadingText, Carousel } from "@components";
+import { SwiperSlide } from "swiper/react";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import styled from "styled-components";
 import jackDaniel from "@assets/images/product-Img/jackDaniel.png";
-import plusIcon from "@assets/images/plusIcon.png";
-import deleteIcon from "@assets/images/deleteIcon.png";
 import group5 from "@assets/images/group5.png";
 
 const Recommendation = () => {
-  const [isOn, setIsOn] = useState(false);
-  const handleClick = () => {
-    setIsOn(!isOn);
+  const [isOn, setIsOn] = useState();
+
+  const cardClick = (e) => {
+   console.log(e, 'eeev')
+    setIsOn(e);
   };
+
   return (
     <Container className="md:flex-col xl:flex-row lg:flex-row flex-col">
       <RecommendProduct>
@@ -19,37 +23,66 @@ const Recommendation = () => {
             {"Our Recommendations"}
           </HeadingText>
         </RecommendTitle>
-        <CustomSlider sliderId={"recommendSlider"} sliderInner={"RsliderIn"}>
-          {[...Array(24)].map((card, idx) => {
+        <Carousel
+          slidesPerGroup={1}
+          autoplay={false}
+          spaceBetween1200={14}
+          slidesPerView1200={4}
+          spaceBetween1024={14}
+          slidesPerView1024={3}
+          slidesPerView768={3}
+          spaceBetween768={6}
+          slidesPerView567={4}
+          spaceBetween567={5}
+          slidesPerView480={3}
+          spaceBetween480={5}
+          slidesPerView280={1}
+          spaceBetween280={5}
+          carouselclass={"lg:w-full sm:w-full w-6/12"}
+          navigation={{
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
+            disabledClass: ".swiper-dis",
+          }}
+        >
+          {[...Array(30)].map((slide, index) => {
             return (
-              <Slide id={`${idx}`}>
+              <SwiperSlide
+                className="mb-1 first:ml-0.5 ml-0 last:mr-1"
+                key={index}
+                style={{ width: "auto" }}
+              >
                 <Card
-                  className="4xl:w-[170px] 2xl:w-[155px] xl:w-[130px] w-[135px]"
+                  onClick={() => cardClick(index)}
+                  id={index}
+                  className="4xl:w-auto 2xl:w-auto xl:w-auto w-auto"
                   productName={"Jack Daniel's Tennessee Whiskey"}
                   price={"29.90"}
                   marketPrice={"32.90"}
                   weight={"70cl"}
                   productRate={"42.70/l"}
                   productImg={jackDaniel}
-                  CartBtnClick={handleClick}
-                  isOn={isOn}
-                  recommendtag={"recommend"}
-                  titleClassName={`${isOn ? "pr-0" : "pr-1"}`}
-                  iconName={isOn ? deleteIcon : plusIcon}
-                  titleName={isOn ? "1" : "Add"}
-                  bottomlabel={isOn ? <Icon src={plusIcon} /> : "to cart"}
+                  isId={isOn}
+                  addable={true}
+                  recommendtag={"RECOMMENDED"}
                 />
-              </Slide>
+              </SwiperSlide>
             );
           })}
-        </CustomSlider>
+          <NxtBtn className={"swiper-next"}>
+            <MdChevronRight size={22} />
+          </NxtBtn>
+          <PrvBtn className={"swiper-prev"}>
+            <MdChevronLeft size={22} />
+          </PrvBtn>
+        </Carousel>
       </RecommendProduct>
       <RecommendBanner>
         <BannerContainer>
           <BannerContent>
             <Img src={group5} alt="" />
             <BannerLink>
-              <CustomText className="text-white">{"Our gin range"}</CustomText>
+              <CustomText>{"Our gin range"}</CustomText>
               <CustomButton>{"Discover it Now"}</CustomButton>
             </BannerLink>
           </BannerContent>
@@ -64,6 +97,7 @@ const RecommendProduct = tw.div`
 xl:w-7/12 
 lg:w-6/12 
 md:w-full
+w-full
 xl:mb-0
 sm:mb-4
 mr-4
@@ -72,18 +106,6 @@ relative
 flex
 flex-col
 items-center
-`;
-
-const Slide = tw.div`
-mx-2
-inline-block
-my-1
-first:ml-0
-`;
-
-const Icon = tw.img`
-w-auto
-h-[14px]
 `;
 
 const RecommendBanner = tw.div`
@@ -112,8 +134,6 @@ const BannerContent = tw.div`
 w-full 
 h-full 
 relative 
-z-0
-bg-green-400
 `;
 
 const Img = tw.img`
@@ -128,43 +148,83 @@ pointer-events-none
 
 const BannerLink = tw.div`
 absolute 
-top-2 
-right-[10%]  
+w-full
+flex
+flex-col
 text-center
+top-[1pc]
 `;
 
 const CustomText = tw.span`
 text-white
-2xl:text-4xl
-xl:text-3xl 
-lg:text-2xl 
-md:text-lg 
-sm:text-base 
-text-xs 
+md:text-4xl
+sm:text-2xl
 font-[Montserrat] 
 font-semibold 
-text-gray-800 
 `;
 
 const CustomButton = tw.button`
-xl:text-base
-lg:text-sm
-sm:text-xs
-text-[10px]
 bg-white
 text-color456
 mx-auto
-rounded
-xl:py-3 
-sm:py-2
-py-1
-xl:w-[55%]
-lg:w-[45%]
-md:w-[50%]
-sm:w-[70%]
-w-[65%]
-hover:shadow-md
-mt-4
+rounded-md
+mt-5
+md:p-3
+sm:p-2
+sm:px-6
+md:px-9
+md:text-[15px]
+sm:text-[12px]
+text-bold
+`;
+
+const NxtBtn = styled("button")`
+   {
+    top: 45%;
+    right: 0;
+    margin-right: 10px;
+    position: absolute;
+    backdrop-filter: blur(50px);
+    border-radius: 100%;
+    background: rgba(211, 206, 210, 0.8);
+    box-shadow: 0 3px 6px 0 rgb(0, 0, 0, 0.16);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    z-index: 2;
+    outline: none;
+    border: none;
+    &:disabled {
+      display: none;
+    }
+  }
+`;
+
+const PrvBtn = styled("button")`
+   {
+    top: 45%;
+    left: 0px;
+    margin-right: 10px;
+    position: absolute;
+    border-radius: 100%;
+background: rgba(211,206,210,0.8);
+box-shadow: 0 3px 6px 0 rgb(0, 0, 0, 0.16);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    z-index: 2;
+    outline: none;
+    border: none;
+    &:disabled {
+      display: none;
+    }
+  
 `;
 
 export default Recommendation;

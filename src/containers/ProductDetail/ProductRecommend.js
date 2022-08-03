@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import tw from "tailwind-styled-components";
 import { Card, Carousel } from "@components";
 import { SwiperSlide } from "swiper/react";
@@ -10,11 +10,18 @@ import deleteIcon from "@assets/images/deleteIcon.png";
 import { ExtraValues, NutritionValues, Specification } from "./widgets";
 
 const ProductRecommend = () => {
+  const [isOn, setIsOn] = useState();
+  
+  const cardClick = (e) => {
+    setIsOn(e);
+  };
+  
   const productInfo = [
     { element: <Specification /> },
     { element: <NutritionValues /> },
     { element: <ExtraValues /> },
   ];
+
   return (
     <Container>
       <ProductContent>
@@ -24,7 +31,6 @@ const ProductRecommend = () => {
           </span>
         </ProductTitle>
         <Carousel
-          navigation={true}
           autoplay={false}
           slidesPerGroup={6}
           slidesPerView={6}
@@ -40,24 +46,40 @@ const ProductRecommend = () => {
           spaceBetween480={5}
           slidesPerView280={2}
           spaceBetween280={5}
+          navigation={{
+            nextEl: ".swiper-next",
+            prevEl: ".swiper-prev",
+            disabledClass: ".swiper-dis",
+          }}
         >
-          {[...Array(12)].map((index) => {
+          {[...Array(12)].map((card, idx) => {
             return (
-              <SwiperSlide className="mb-1" key={index}>
+              <SwiperSlide
+                className="mb-1 first:ml-1 ml-0 last:mr-1"
+                key={idx}
+              >
                 <Card
-                  className="mr-[13.5px]"
+                  onClick={() => cardClick(idx)}
+                  id={idx}
+                  className="4xl:w-[170px] 2xl:w-[155px] xl:w-[130px] w-[135px]"
                   productName={"Jack Daniel's Tennessee Whiskey"}
                   price={"29.90"}
                   marketPrice={"32.90"}
                   weight={"70cl"}
-                  productRate={"42.70l"}
+                  productRate={"42.70/l"}
                   productImg={jackDaniel}
-                  iconName={plusIcon}
-                  deleteIcon={deleteIcon}
+                  isOn={isOn}
+                  addable={true}
                 />
               </SwiperSlide>
             );
           })}
+          <NxtBtn className={"swiper-next"}>
+            <MdChevronRight size={22}/>
+          </NxtBtn>
+          <PrvBtn className={"swiper-prev"}>
+            <MdChevronLeft size={22}/>
+          </PrvBtn>
         </Carousel>
       </ProductContent>
       <ProductContent>
@@ -128,19 +150,21 @@ const ProductRecommend = () => {
             disabledClass: ".swiper-dis",
           }}
         >
-          {[...Array(12)].map((index) => {
+          {[...Array(12)].map((card, idx) => {
             return (
-              <SwiperSlide className="mb-1" key={index}>
+              <SwiperSlide className="mb-1" key={idx}>
                 <Card
-                  className="mr-[13.5px]"
+                  onClick={() => cardClick(idx)}
+                  id={idx}
+                  className="4xl:w-[170px] 2xl:w-[155px] xl:w-[130px] w-[135px]"
                   productName={"Jack Daniel's Tennessee Whiskey"}
                   price={"29.90"}
                   marketPrice={"32.90"}
                   weight={"70cl"}
-                  productRate={"42.70l"}
+                  productRate={"42.70/l"}
                   productImg={jackDaniel}
-                  iconName={plusIcon}
-                  deleteIcon={deleteIcon}
+                  isId={isOn}
+                  addable={true}
                 />
               </SwiperSlide>
             );
@@ -156,6 +180,7 @@ const ProductRecommend = () => {
     </Container>
   );
 };
+
 const Container = tw.div`
 py-6
 `;
@@ -178,6 +203,11 @@ px-4
 py-10
 `;
 
+const Icon = tw.img`
+w-auto
+h-[14px]
+`;
+
 const Btn = styled("button")`
    {
     top: 40%;
@@ -190,6 +220,58 @@ const Btn = styled("button")`
     box-shadow: 0 3px 6px 0 rgb(0, 0, 0, 0.16);
     width: 58px;
     height: 58px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    z-index: 2;
+    outline: none;
+    border: none;
+    &:disabled {
+      display: none;
+    }
+  }
+`;
+
+const NxtBtn = styled("button")`
+   {
+    top: 50%;
+    right: 0;
+    margin-right: 10px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(50px);
+    border-radius: 100%;
+    box-shadow: 0 3px 6px 0 rgb(0, 0, 0, 0.16);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    z-index: 2;
+    outline: none;
+    border: none;
+    &:disabled {
+      display: none;
+    }
+  }
+`;
+
+const PrvBtn = styled("button")`
+   {
+    top: 50%;
+    left: 0;
+    margin-right: 10px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(50px);
+    border-radius: 100%;
+    box-shadow: 0 3px 6px 0 rgb(0, 0, 0, 0.16);
+    width: 28px;
+    height: 28px;
     display: flex;
     justify-content: center;
     align-items: center;

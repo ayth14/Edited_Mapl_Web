@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import tw from "tailwind-styled-components";
 import { useNavigate } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 import { XIcon } from "@heroicons/react/solid";
 import { PrimaryText, Button, Input } from "@components";
 import theme from "@theme";
-import { HiOutlinePencil } from "react-icons/hi";
-import { toast } from "react-toastify";
 
 const LocationUnavailableModal = (props) => {
   const { isOpenModal, closeModal } = props;

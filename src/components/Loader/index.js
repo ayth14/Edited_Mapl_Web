@@ -26,8 +26,8 @@ bg-transparent
 border-8
 animate-spin
 rounded-full
-border-t-fbButtonColor
-border-fbButtonColor/20
+border-t-logoColor
+border-logoColor
 `
 
 export default AppLoader;

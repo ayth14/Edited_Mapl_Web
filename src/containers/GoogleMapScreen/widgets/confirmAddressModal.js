@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import tw from "tailwind-styled-components";
 import { animated, useSpring } from "@react-spring/web";
 import { XIcon } from "@heroicons/react/solid";
-import { PrimaryText, Button, GoogleMap, Input } from "@components";
+import { PrimaryText, Button, GoogleMap } from "@components";
 import theme from "@theme";
 import indoorWhite from "@assets/images/home.png";
 import indoorBlack from "@assets/images/homeBlack.png";
@@ -70,12 +70,13 @@ const ConfirmAddressModal = ({ isOpenModal, closeModal }) => {
                   isToggleDoor ? "bg-black" : "bg-white"
                 } inline-block w-full text-center`}
               >
-                <ToggleButton onClick={toggleIndoor} style={{color: !isToggleDoor ? theme.colors.black : theme.colors.white}}>
+                <ToggleButton onClick={toggleIndoor} className='align-middle' style={{color: !isToggleDoor ? theme.colors.black : theme.colors.white}}>
                   {"Is indoor"}
                 </ToggleButton>
                 <img
                   src={isToggleDoor ? indoorWhite : indoorBlack}
                   className={"inline-block w-6 h-5 self-center mx-2"}
+                  alt=""
                 />
               </div>
               <div
@@ -83,12 +84,13 @@ const ConfirmAddressModal = ({ isOpenModal, closeModal }) => {
                   !isToggleDoor ? "bg-black" : "bg-white"
                 } inline-block w-full text-center`}
               >
-                <ToggleButton onClick={toggleOutdoor} style={{color: isToggleDoor ? theme.colors.black : theme.colors.white}}>
+                <ToggleButton onClick={toggleOutdoor} className='align-middle' style={{color: isToggleDoor ? theme.colors.black : theme.colors.white}}>
                   {"Is outdoor"}
                 </ToggleButton>
                 <img
                   src={!isToggleDoor ? outdoorWhite : outdoor}
                   className={"inline-block w-5 h-5 self-center mx-2"}
+                  alt=""
                 />
               </div>
             </div>
@@ -96,7 +98,16 @@ const ConfirmAddressModal = ({ isOpenModal, closeModal }) => {
               <GoogleMap />
             </GoogleMapContainer>
             {!isToggleDoor ? (
-              <input type={"file"} />
+               <div className="flex flex-col">
+                <div className="flex">
+               <SearchInput
+                 placeholder="e.g. 4073, Sundown Lane Austin, Texas, 78749"
+                 className="w-full"
+               />
+               <HiOutlinePencil className="flex self-center mb-1" />
+               </div>
+                 <input type={"file"} className='mt-3' />
+             </div>
             ) : (
               <div className="flex flex-row">
                 <SearchInput
@@ -184,7 +195,6 @@ const ToggleButton = tw.button`
 h-10
 self-center
 `;
-
 
 const SearchInput = tw.input`
 w-full

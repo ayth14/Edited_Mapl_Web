@@ -17,6 +17,7 @@ import OtpModal from "./widgets/OtpModal";
 import { isValidName, isValidNumber, isValidEmail, isValidPassword } from "@utils";
 import { toast } from "react-toastify";
 import { en } from "@i18n";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 
 const Registration = () => {
   const [state, setState] = useState({
@@ -26,6 +27,8 @@ const Registration = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    showPassword: false,
+    showConfirmPassword: false,
     isMobileVerificationModal: false,
     isEmailVerificationModal: false,
     isMobileModalValue: "",
@@ -41,6 +44,8 @@ const Registration = () => {
     email,
     password,
     confirmPassword,
+    showPassword,
+    showConfirmPassword,
     isMobileVerificationModal,
     isEmailVerificationModal,
     isMobileModalValue,
@@ -92,6 +97,14 @@ const Registration = () => {
   const getEmailOtpModalValue = (value) => {
     setState({ ...state, isEmailModalValue: value });
   };
+
+  const handleClickShowPassword = () =>{ 
+    setState(prev => ({ ...prev, showPassword: !showPassword}))
+  }
+
+  const handleClickShowConfirmPassword = () => {
+    setState(prev => ({...prev , showConfirmPassword: !showConfirmPassword}))
+  }
 
   const goBackByMobileOtpModal = () => {
     if (isMobileModalValue.trim().length == 0) {
@@ -219,6 +232,7 @@ const Registration = () => {
               mobile_num ? toggleMobileVerificationModal : null
             }
             placeholder={"+41 79 774 53 76"}
+            maxLength={13}
             inputicon={switzerlandLogo}
             onChange={onChangeMobileNum}
             bottomlabel={
@@ -271,18 +285,22 @@ const Registration = () => {
           <Input
             name="password"
             value={password}
-            type="password"
+            type={showPassword ? "text" : "password"}
             title={"Password"}
             placeholder={"Password"}
             onChange={onChangeHandler}
+            hideAndShowEyeIcon={showPassword ? <EyeIcon className="w-3 h-3"/> : <EyeOffIcon className="w-3 h-3"/>}
+            hideAndShowPasswordOnClick={handleClickShowPassword}
           />
           <Input
             name="confirmPassword"
             value={confirmPassword}
-            type="password"
+            type={showConfirmPassword ? "text" : "password"}
             title={"Confirm Password"}
             placeholder={"Confirm Password"}
             onChange={onChangeHandler}
+            hideAndShowEyeIcon={showConfirmPassword ? <EyeIcon className="w-3 h-3"/> : <EyeOffIcon className="w-3 h-3"/>}
+            hideAndShowPasswordOnClick={handleClickShowConfirmPassword}
           />
           <CheckBox title={"Subscribe to Newsletter"} />
           <Button

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import tw from "tailwind-styled-components";
 import { IoClose } from "react-icons/io5";
-import { Basic } from "@components/Text";
 import categoriesList from "./categoriesList";
 import "tippy.js/dist/tippy.css";
 import { Link } from "react-router-dom";
